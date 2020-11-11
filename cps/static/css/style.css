@@ -107,6 +107,12 @@ a, .danger,.book-remove, .editable-empty, .editable-empty:hover { color: #45b29d
   text-decoration: none;
 }
 
+#copyright img{
+  display:block;
+  max-width:100%;
+  height:auto
+}
+
 .container-fluid img {
   display: block;
   max-width: 100%;
