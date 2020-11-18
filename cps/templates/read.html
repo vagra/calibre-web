@@ -7,12 +7,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="apple-touch-icon" sizes="140x140" href="{{ url_for('static', filename='favicon.ico') }}">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="apple-touch-icon" sizes="140x140" href="//cdn.sanxuezang.com/static/favicon.ico">
+        <link rel="shortcut icon" href="//cdn.sanxuezang.com/static/favicon.ico">
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/normalize.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/popup.css') }}">
+        <link rel="stylesheet" href="//cdn.sanxuezang.com/static/css/libs/normalize.css">
+        <link rel="stylesheet" href="//cdn.sanxuezang.com/static/css/main.css">
+        <link rel="stylesheet" href="//cdn.sanxuezang.com/static/css/popup.css">
     </head>
     <body>
       <div id="sidebar">
@@ -64,7 +64,7 @@
         <div id="viewer"></div>
         <div id="next" class="arrow">›</div>
 
-        <div id="loader"><img src="{{ url_for('static', filename='img/loader.gif') }}"></div>
+        <div id="loader"><img src="//cdn.sanxuezang.com/static/img/loader.gif"></div>
       </div>
       <div class="modal md-effect-1" id="settings-modal">
           <div class="md-content">
@@ -79,23 +79,23 @@
       </div>
       <div class="overlay"></div>
 
-      <script src="{{ url_for('static', filename='js/libs/jszip.min.js') }}">
-      </script> <script src="{{ url_for('static', filename='js/libs/epub.min.js') }}"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/jszip.min.js">
+      </script> <script src="//cdn.sanxuezang.com/static/js/libs/epub.min.js"></script>
       <script type="text/javascript">
           window.calibre = {
-              filePath: "{{ url_for('static', filename='js/libs/') }}",
-              cssPath: "{{ url_for('static', filename='css/') }}",
+              filePath: "//cdn.sanxuezang.com/static/js/libs/",
+              cssPath: "//cdn.sanxuezang.com/static/css/",
               bookmarkUrl: "{{ url_for('web.bookmark', book_id=bookid, book_format='EPUB') }}",
               bookUrl: "{{ url_for('web.serve_book', book_id=bookid, book_format='epub', anyname='file.epub') }}",
               bookmark: "{{ bookmark.bookmark_key if bookmark != None }}",
               useBookmarks: "{{ g.user.is_authenticated | tojson }}"
           };
       </script>
-      <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/libs/jszip.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/libs/screenfull.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/libs/epub.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/libs/reader.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/reading/epub.js') }}"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/jquery.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/jszip.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/screenfull.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/epub.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/reader.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/reading/epub.js"></script>
     </body>
 </html>

@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
-  <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/libs/soundmanager2.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/libs/bar-ui.js') }}"></script>
+  <script src="//cdn.sanxuezang.com/static/js/libs/jquery.min.js"></script>
+  <script src="//cdn.sanxuezang.com/static/js/libs/soundmanager2.js"></script>
+  <script src="//cdn.sanxuezang.com/static/js/libs/bar-ui.js"></script>
 
-  <link rel="apple-touch-icon" sizes="140x140" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <link href="{{ url_for('static', filename='css/libs/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/bar-ui.css') }}" />
+  <link rel="apple-touch-icon" sizes="140x140" href="//cdn.sanxuezang.com/static/favicon.ico">
+  <link rel="shortcut icon" href="//cdn.sanxuezang.com/static/favicon.ico">
+  <link href="//cdn.sanxuezang.com/static/css/libs/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="//cdn.sanxuezang.com/static/css/libs/bar-ui.css" />
 
   <script>
     "use strict";
@@ -131,8 +131,8 @@ soundManager.setup({
   }
 });
 window.calibre = {
-        filePath: "{{ url_for('static', filename='js/libs/') }}",
-        cssPath: "{{ url_for('static', filename='css/') }}",
+        filePath: "//cdn.sanxuezang.com/static/js/libs/",
+        cssPath: "//cdn.sanxuezang.com/static/css/",
         bookUrl: "{{ url_for('static', filename=mp3file) }}/",
         bookmarkUrl: "{{ url_for('web.bookmark', book_id=mp3file, book_format=audioformat.upper()) }}",
         bookmark: "{{ bookmark.bookmark_key if bookmark != None }}",

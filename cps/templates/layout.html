@@ -11,15 +11,15 @@
     <meta name="description" content="三学藏是天台山翠屏寺开设的佛教电子书籍下载、在线阅览网站，包括各版本大藏经、历代祖师、近代、现代佛教大德著作等等。" />
 
     <!-- Bootstrap -->
-    <link rel="apple-touch-icon" sizes="140x140" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link href="{{ url_for('static', filename='css/libs/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <link rel="apple-touch-icon" sizes="140x140" href="//cdn.sanxuezang.com/static/favicon.ico">
+    <link rel="shortcut icon" href="//cdn.sanxuezang.com/static/favicon.ico">
+    <link href="//cdn.sanxuezang.com/static/css/libs/bootstrap.min.css" rel="stylesheet" media="screen">
     {% block header %}{% endblock %}
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ url_for('static', filename='css/upload.css') }}" rel="stylesheet" media="screen">
+    <link href="//cdn.sanxuezang.com/static/css/style.css" rel="stylesheet" media="screen">
+    <link href="//cdn.sanxuezang.com/static/css/upload.css" rel="stylesheet" media="screen">
     {% if g.current_theme == 1 %}
-       <link href="{{ url_for('static', filename='css/caliBlur.css') }}" rel="stylesheet" media="screen">
-       <link href="{{ url_for('static', filename='css/caliBlur_override.css') }}" rel="stylesheet" media="screen">
+       <link href="//cdn.sanxuezang.com/static/css/caliBlur.css" rel="stylesheet" media="screen">
+       <link href="//cdn.sanxuezang.com/static/css/caliBlur_override.css" rel="stylesheet" media="screen">
     {% endif %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -208,21 +208,21 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ url_for('static', filename='js/libs/jquery.min.js') }}"></script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ url_for('static', filename='js/libs/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/underscore-min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/intention.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/context.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/plugins.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/jquery.form.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/uploadprogress.js') }}"> </script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/bootstrap.min.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/underscore-min.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/intention.min.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/context.min.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/plugins.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/libs/jquery.form.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/main.js"></script>
+    <script src="//cdn.sanxuezang.com/static/js/uploadprogress.js"> </script>
     {% if g.current_theme == 1 %}
-      <script src="{{ url_for('static', filename='js/libs/jquery.visible.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/libs/compromise.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/libs/readmore.min.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/caliBlur.js') }}"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/jquery.visible.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/compromise.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/libs/readmore.min.js"></script>
+      <script src="//cdn.sanxuezang.com/static/js/caliBlur.js"></script>
     {% endif %}
     <script type="text/javascript">
         $(function() {
