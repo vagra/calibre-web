@@ -1421,7 +1421,7 @@ def advanced_search_form():
 # ################################### Download/Send ##################################################################
 
 
-@web.route("/cover/<int:book_id>")
+@web.route("/assets/<int:path>")
 @login_required_if_no_ano
 def get_cover(book_id):
     return get_book_cover(book_id)
