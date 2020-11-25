@@ -65,6 +65,8 @@ def init_app(app, config):
     app.config['LDAP_GROUP_OBJECT_FILTER'] = config.config_ldap_group_object_filter
     app.config['LDAP_GROUP_MEMBERS_FIELD'] = config.config_ldap_group_members_field
 
+    app.config['SQLALCHEMY_POOL_RECYCLE'] = 45
+
     try:
         _ldap.init_app(app)
     except RuntimeError as e:
