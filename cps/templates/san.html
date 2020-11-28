@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if g.user.show_detail_random() %}
+<div class="discover random-books">
+  <h2 class="random-books">{{_('Discover (Random Books)')}}</h2>
+  <div class="row">
+   {% for entry in random %}
+    <div class="col-sm-3 col-lg-2 col-xs-6 book" id="books_rand">
+      <div class="cover">
+          <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+              <img src="//img.sanxuezang.com/assets/{{ entry.path }}/cover.jpg" alt="{{ entry.title }}" />
+          </a>
+      </div>
+      <div class="meta">
+        <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+          <p class="title">{{entry.title|shortentitle}}</p>
+        </a>
+        <p class="author">
+          {% for author in entry.authors %}
+            {% if loop.index > g.config_authors_max and g.config_authors_max != 0 %}
+              {% if not loop.first %}
+                <span class="author-hidden-divider">&amp;</span>
+			  {% endif %}
+              <a class="author-name author-hidden" href="{{url_for('web.books_list',  data='author', sort_param='new', book_id=author.id) }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
+              {% if loop.last %}
+                <a href="#" class="author-expand" data-authors-max="{{g.config_authors_max}}" data-collapse-caption="({{_('reduce')}})">(...)</a>
+              {% endif %}
+            {% else %}
+              {% if not loop.first %}
+                <span>&amp;</span>
+              {% endif %}
+              <a class="author-name" href="{{url_for('web.books_list',  data='author', sort_param='new', book_id=author.id) }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
+            {% endif %}
+          {% endfor %}
+        </p>
+        {% if entry.series.__len__() > 0 %}
+        <p class="series">
+          <a href="{{url_for('web.books_list', data='series', sort_param='new', book_id=entry.series[0].id )}}">
+            {{entry.series[0].name}}
+          </a>
+          ({{entry.series_index|formatseriesindex}})
+        </p>
+        {% endif %}
+        {% if entry.ratings.__len__() > 0 %}
+        <div class="rating">
+          {% for number in range((entry.ratings[0].rating/2)|int(2)) %}
+            <span class="glyphicon glyphicon-star good"></span>
+            {% if loop.last and loop.index < 5 %}
+              {% for numer in range(5 - loop.index) %}
+                <span class="glyphicon glyphicon-star-empty"></span>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<div class="discuver toc .container">
+  <h3>从零开始入门佛学</h3>
+
+  <div class="row">
+    <div class="col-sm-3 col-lg-2 col-xs-6">
+      <a href="/shelf/9">感应类-初学必看</a>
+    </div>
+    <div class="col-sm-3 col-lg-2 col-xs-6">
+      <a href="/shelf/3">因果类-初学必看</a>
+    </div>
+    <div class="col-sm-3 col-lg-2 col-xs-6">
+      <a href="/shelf/4">祖师传记-初学必看</a>
+    </div>
+    <div class="col-sm-3 col-lg-2 col-xs-6">
+      <a href="/shelf/5">祖师语录-初学必看</a>
+    </div>
+    <div class="col-sm-3 col-lg-2 col-xs-6">
+      <a href="/shelf/2">佛教修学次第推荐</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="discover">
+  <h2 class="{{title}}">{{_(title)}}</h2>
+  <div class="row">
+    {% if entries[0] %}
+    {% for entry in entries %}
+    <div class="col-sm-3 col-lg-2 col-xs-6 book" id="books">
+      <div class="cover">
+          <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+              <img src="//img.sanxuezang.com/assets/{{ entry.path }}/cover.jpg" alt="{{ entry.title }}"/>
+          </a>
+      </div>
+      <div class="meta">
+        <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+          <p class="title">{{entry.title|shortentitle}}</p>
+        </a>
+        <p class="author">
+          {% for author in entry.authors %}
+            {% if loop.index > g.config_authors_max and g.config_authors_max != 0 %}
+              {% if not loop.first %}
+                <span class="author-hidden-divider">&amp;</span>
+			  {% endif %}
+              <a class="author-name author-hidden" href="{{url_for('web.books_list', data='author', book_id=author.id, sort_param='new') }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
+              {% if loop.last %}
+                <a href="#" class="author-expand" data-authors-max="{{g.config_authors_max}}" data-collapse-caption="({{_('reduce')}})">(...)</a>
+              {% endif %}
+            {% else %}
+              {% if not loop.first %}
+                <span>&amp;</span>
+              {% endif %}
+              <a class="author-name" href="{{url_for('web.books_list', data='author', book_id=author.id, sort_param='new') }}">{{author.name.replace('|',',')|shortentitle(30)}}</a>
+            {% endif %}
+          {% endfor %}
+          {% for format in entry.data %}
+            {% if format.format|lower == 'mp3' %}
+            <span class="glyphicon glyphicon-music"></span>
+            {% endif %}
+          {%endfor%}
+        </p>
+        {% if entry.series.__len__() > 0 %}
+        <p class="series">
+          <a href="{{url_for('web.books_list', data='series', sort_param='new', book_id=entry.series[0].id )}}">
+            {{entry.series[0].name}}
+          </a>
+          ({{entry.series_index|formatseriesindex}})
+        </p>
+        {% endif %}
+        {% if entry.ratings.__len__() > 0 %}
+        <div class="rating">
+          {% for number in range((entry.ratings[0].rating/2)|int(2)) %}
+            <span class="glyphicon glyphicon-star good"></span>
+            {% if loop.last and loop.index < 5 %}
+              {% for numer in range(5 - loop.index) %}
+                <span class="glyphicon glyphicon-star-empty"></span>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
