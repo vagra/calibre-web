@@ -694,11 +694,6 @@ def render_books_list(data, sort, book_id, page):
 
 def render_hot_books(page):
     if current_user.check_visibility(constants.SIDEBAR_HOT):
-        if current_user.show_detail_random():
-            random = calibre_db.session.query(db.Books).filter(calibre_db.common_filters()) \
-                .order_by(func.random()).limit(config.config_random_books)
-        else:
-            random = false()
         off = int(int(config.config_books_per_page) * (page - 1))
         all_books = ub.session.query(ub.Downloads, func.count(ub.Downloads.book_id)).order_by(
             func.count(ub.Downloads.book_id).desc()).group_by(ub.Downloads.book_id)
@@ -715,7 +710,7 @@ def render_hot_books(page):
                 # ub.session.commit()
         numBooks = entries.__len__()
         pagination = Pagination(page, config.config_books_per_page, numBooks)
-        return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
+        return render_title_template('index.html', entries=entries, pagination=pagination,
                                      title=_(u"Hot Books (Most Downloaded)"), page="hot")
     else:
         abort(404)
@@ -724,11 +719,6 @@ def render_hot_books(page):
 def render_downloaded_books(page, order):
     if current_user.check_visibility(constants.SIDEBAR_DOWNLOAD):
         # order = order or []
-        if current_user.show_detail_random():
-            random = calibre_db.session.query(db.Books).filter(calibre_db.common_filters()) \
-                .order_by(func.random()).limit(config.config_random_books)
-        else:
-            random = false()
         # off = int(int(config.config_books_per_page) * (page - 1))
         '''entries, random, pagination = calibre_db.fill_indexpage(page, 0,
                                                                 db.Books,
@@ -748,7 +738,6 @@ def render_downloaded_books(page, order):
                 ub.delete_download(book.id)
 
         return render_title_template('index.html',
-                                     random=random,
                                      entries=entries,
                                      pagination=pagination,
                                      title=_(u"Downloaded books by %(user)s",user=current_user.nickname),
@@ -908,7 +897,7 @@ def render_read_books(page, are_read, as_xml=False, order=None, *args, **kwargs)
         else:
             name = _(u'Unread Books') + ' (' + str(pagination.total_count) + ')'
             pagename = "unread"
-        return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
+        return render_title_template('index.html', entries=entries, pagination=pagination,
                                      title=name, page=pagename)
 
 
