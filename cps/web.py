@@ -685,7 +685,7 @@ def render_books_list(data, sort, book_id, page):
         entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
         return render_title_template('san.html', random=random, entries=entries, pagination=None,
                                      title=_(u"Books"), page=data)
-    elif data == "newest":
+    elif data == "new":
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
         return render_title_template('index.html', entries=entries, pagination=pagination,
                                      title=_(u"Books"), page=data)
@@ -980,8 +980,8 @@ def index(page):
     sort_param = (request.args.get('sort') or 'stored').lower()
     return render_books_list("newest", sort_param, 1, page)
 
+
 @web.route("/san", defaults={'page': 1})
-@web.route('/san/<int:page>')
 @login_required_if_no_ano
 def san(page):
     sort_param = (request.args.get('sort') or 'stored').lower()
