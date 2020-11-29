@@ -742,7 +742,7 @@ msgstr "显示下载过的书籍"
 
 #: cps/templates/index.xml:24 cps/ub.py:79 cps/web.py:639
 msgid "Top Rated Books"
-msgstr "最高评分书籍"
+msgstr "好评书籍"
 
 #: cps/ub.py:81
 msgid "Show Top Rated Books"
