@@ -1,7 +1,7 @@
 .navbar-form .input-group .form-control,
-.navbar-form .input-group .input-group-btn,
 .input-group-sm > .input-group-btn > .btn {
-    font-size: 20px;
+    height: 36px;
+    font-size: 24px;
     line-height: 1;
 }
 
