@@ -682,8 +682,8 @@ def render_books_list(data, sort, book_id, page):
         offset = int(int(config.config_books_per_page) * (page - 1))
         return render_adv_search_results(term, offset, order, config.config_books_per_page)
     elif data == "san":
-        entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
-        return render_title_template('san.html', random=random, entries=entries, pagination=pagination,
+        entries, random, pagination = calibre_db.fill_indexpage(page, 5, db.Books, True, order)
+        return render_title_template('san.html', random=random, entries=entries, pagination=None,
                                      title=_(u"Books"), page=data)
     else:
         website = data or "newest"
