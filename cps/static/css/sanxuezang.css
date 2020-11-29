@@ -5,6 +5,10 @@
     line-height: 1;
 }
 
+.navbar-brand {
+    padding: 18px 15px;
+}
+
 .toc {
     display: grid;
 }
