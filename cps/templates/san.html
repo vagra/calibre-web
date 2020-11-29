@@ -1,5 +1,22 @@
 {% extends "layout.html" %}
 {% block body %}
+
+<div class="discuver about">
+  <div class="row">
+    <div class="col-sm-3 col-lg-2 col-xs-5">
+      <a href="#">
+        <img src="/static/img/logo.png" alt="三学藏"/>
+      </a>
+    </div>
+    <div class="col-auto">
+        <h4 class="media-heading">三学藏佛教电子书站　使用说明</h4>
+        <p>佛经、佛书、作者姓名，可直接在左上角搜索栏中搜索。</p>
+        <p>如果你是佛法萌新，欢迎参阅三学教观社网站及“从零开始入门佛学”书单</p>
+        <p>书籍投稿请联系：1465802737@qq.com</p>
+    </div>
+  </div>
+</div>
+
 {% if g.user.show_detail_random() %}
 <div class="discover random-books">
   <h2 class="random-books">{{_('Discover (Random Books)')}}</h2>
