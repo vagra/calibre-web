@@ -685,6 +685,10 @@ def render_books_list(data, sort, book_id, page):
         entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
         return render_title_template('san.html', random=random, entries=entries, pagination=None,
                                      title=_(u"Books"), page=data)
+    elif data == "newest":
+        entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
+        return render_title_template('index.html', entries=entries, pagination=pagination,
+                                     title=_(u"Books"), page=data)
     else:
         website = data or "newest"
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
