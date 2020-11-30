@@ -2662,6 +2662,14 @@ msgstr "生成Kobo Auth 地址"
 msgid "Do you really want to delete the Kobo Token?"
 msgstr "您确定删除Kobo Token吗？"
 
-#: 
+#: cps/templates/san.html:512
 msgid "Newest Books"
 msgstr "最新书籍"
+
+#: cps/web.py: 691
+msgid "CBeta Books"
+msgstr "CBeta 电子佛经"
+
+#: cps/web.py: 695
+msgid "Budaedu Books"
+msgstr "佛陀教育基金会佛经"
