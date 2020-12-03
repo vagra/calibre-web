@@ -1125,25 +1125,16 @@ def series_list():
             order = db.Series.sort.desc()
         else:
             order = db.Series.sort.asc()
-        if current_user.get_view_property('series', 'series_view') == 'list':
-            entries = calibre_db.session.query(db.Series, func.count('books_series_link.book').label('count')) \
-                .join(db.books_series_link).join(db.Books).filter(calibre_db.common_filters()) \
-                .group_by(text('books_series_link.series')).order_by(order).all()
-            charlist = calibre_db.session.query(func.upper(func.substr(db.Series.sort, 1, 1)).label('char')) \
-                .join(db.books_series_link).join(db.Books).filter(calibre_db.common_filters()) \
-                .group_by(func.upper(func.substr(db.Series.sort, 1, 1))).all()
-            return render_title_template('list.html', entries=entries, folder='web.books_list', charlist=charlist,
-                                         title=_(u"Series"), page="serieslist", data="series")
-        else:
-            entries = calibre_db.session.query(db.Books, func.count('books_series_link').label('count')) \
-                .join(db.books_series_link).join(db.Series).filter(calibre_db.common_filters()) \
-                .group_by(text('books_series_link.series')).order_by(order).all()
-            charlist = calibre_db.session.query(func.upper(func.substr(db.Series.sort, 1, 1)).label('char')) \
-                .join(db.books_series_link).join(db.Books).filter(calibre_db.common_filters()) \
-                .group_by(func.upper(func.substr(db.Series.sort, 1, 1))).all()
 
-            return render_title_template('grid.html', entries=entries, folder='web.books_list', charlist=charlist,
-                                         title=_(u"Series"), page="serieslist", data="series", bodyClass="grid-view")
+        entries = calibre_db.session.query(db.Series, func.count('books_series_link.book').label('count')) \
+            .join(db.books_series_link).join(db.Books).filter(calibre_db.common_filters()) \
+            .group_by(text('books_series_link.series')).order_by(order).all()
+        charlist = calibre_db.session.query(func.upper(func.substr(db.Series.sort, 1, 1)).label('char')) \
+            .join(db.books_series_link).join(db.Books).filter(calibre_db.common_filters()) \
+            .group_by(func.upper(func.substr(db.Series.sort, 1, 1))).all()
+        return render_title_template('list.html', entries=entries, folder='web.books_list', charlist=charlist,
+                                        title=_(u"Series"), page="serieslist", data="series")
+
     else:
         abort(404)
 
