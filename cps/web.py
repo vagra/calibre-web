@@ -683,12 +683,20 @@ def render_books_list(data, sort, book_id, page):
         return render_adv_search_results(term, offset, order, config.config_books_per_page)
     elif data == "san":
         entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
-        return render_title_template('san.html', random=random, entries=entries, pagination=None,
+        return render_title_template('san.html', random=random, entries=entries,
                                      title=_(u"Books"), page=data)
+    elif data == "cbeta":
+        entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
+        return render_title_template('cbeta.html', entries=entries,
+                                     title=_(u"CBeta Books"), page=data)
+    elif data == "budaedu":
+        entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
+        return render_title_template('budaedu.html', entries=entries,
+                                     title=_(u"BudaEdu Books"), page=data)
     elif data == "new":
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
         return render_title_template('index.html', entries=entries, pagination=pagination,
-                                     title=_(u"Books"), page=data)
+                                     title=_(u"New Books"), page=data)
     else:
         website = data or "newest"
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
@@ -981,11 +989,25 @@ def index(page):
     return render_books_list("newest", sort_param, 1, page)
 
 
-@web.route("/san", defaults={'page': 1})
+@web.route("/san")
 @login_required_if_no_ano
-def san(page):
+def san():
     sort_param = (request.args.get('sort') or 'stored').lower()
-    return render_books_list("san", sort_param, 1, page)
+    return render_books_list("san", sort_param, 1, 1)
+
+
+@web.route("/cbeta")
+@login_required_if_no_ano
+def cbeta():
+    sort_param = (request.args.get('sort') or 'stored').lower()
+    return render_books_list("cbeta", sort_param, 1, 1)
+
+
+@web.route("/budaedu")
+@login_required_if_no_ano
+def budaedu():
+    sort_param = (request.args.get('sort') or 'stored').lower()
+    return render_books_list("budaedu", sort_param, 1, 1)
 
 
 @web.route('/<data>/<sort_param>', defaults={'page': 1, 'book_id': "1"})
