@@ -637,7 +637,7 @@ def render_books_list(data, sort, book_id, page):
                                                                     db.Books,
                                                                     db.Books.ratings.any(db.Ratings.rating > 9),
                                                                     order)
-            return render_title_template('index.html', entries=entries, pagination=pagination,
+            return render_title_template('show.html', entries=entries, pagination=pagination,
                                          id=book_id, title=_(u"Top Rated Books"), page="rated")
         else:
             abort(404)
@@ -695,7 +695,7 @@ def render_books_list(data, sort, book_id, page):
                                      title=_(u"BudaEdu Books"), page=data)
     elif data == "new":
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
-        return render_title_template('index.html', entries=entries, pagination=pagination,
+        return render_title_template('show.html', entries=entries, pagination=pagination,
                                      title=_(u"New Books"), page=data)
     else:
         website = data or "newest"
@@ -722,7 +722,7 @@ def render_hot_books(page):
                 # ub.session.commit()
         numBooks = entries.__len__()
         pagination = Pagination(page, config.config_books_per_page, numBooks)
-        return render_title_template('index.html', entries=entries, pagination=pagination,
+        return render_title_template('show.html', entries=entries, pagination=pagination,
                                      title=_(u"Hot Books (Most Downloaded)"), page="hot")
     else:
         abort(404)
@@ -749,7 +749,7 @@ def render_downloaded_books(page, order):
                              .filter(db.Books.id == book.id).first():
                 ub.delete_download(book.id)
 
-        return render_title_template('index.html',
+        return render_title_template('show.html',
                                      entries=entries,
                                      pagination=pagination,
                                      title=_(u"Downloaded books by %(user)s",user=current_user.nickname),
@@ -793,7 +793,7 @@ def render_publisher_books(page, book_id, order):
                                                                 [db.Series.name, order[0], db.Books.series_index],
                                                                 db.books_series_link,
                                                                 db.Series)
-        return render_title_template('index.html', entries=entries, pagination=pagination, id=book_id,
+        return render_title_template('show.html', entries=entries, pagination=pagination, id=book_id,
                                      title=_(u"Publisher: %(name)s", name=publisher.name), page="publisher")
     else:
         abort(404)
@@ -806,7 +806,7 @@ def render_series_books(page, book_id, order):
                                                                 db.Books,
                                                                 db.Books.series.any(db.Series.id == book_id),
                                                                 [order[0]])
-        return render_title_template('index.html', pagination=pagination, entries=entries, id=book_id,
+        return render_title_template('show.html', pagination=pagination, entries=entries, id=book_id,
                                      title=_(u"Series: %(serie)s", serie=name.name), page="series")
     else:
         abort(404)
@@ -819,7 +819,7 @@ def render_ratings_books(page, book_id, order):
                                                             db.Books.ratings.any(db.Ratings.id == book_id),
                                                             [db.Books.timestamp.desc(), order[0]])
     if name and name.rating <= 10:
-        return render_title_template('index.html', pagination=pagination, entries=entries, id=book_id,
+        return render_title_template('show.html', pagination=pagination, entries=entries, id=book_id,
                                      title=_(u"Rating: %(rating)s stars", rating=int(name.rating / 2)), page="ratings")
     else:
         abort(404)
@@ -832,7 +832,7 @@ def render_formats_books(page, book_id, order):
                                                                 db.Books,
                                                                 db.Books.data.any(db.Data.format == book_id.upper()),
                                                                 [db.Books.timestamp.desc(), order[0]])
-        return render_title_template('index.html', pagination=pagination, entries=entries, id=book_id,
+        return render_title_template('show.html', pagination=pagination, entries=entries, id=book_id,
                                      title=_(u"File format: %(format)s", format=name.format), page="formats")
     else:
         abort(404)
@@ -846,7 +846,7 @@ def render_category_books(page, book_id, order):
                                                                 db.Books.tags.any(db.Tags.id == book_id),
                                                                 [order[0], db.Series.name, db.Books.series_index],
                                                                 db.books_series_link, db.Series)
-        return render_title_template('index.html', entries=entries, pagination=pagination, id=book_id,
+        return render_title_template('show.html', entries=entries, pagination=pagination, id=book_id,
                                      title=_(u"Category: %(name)s", name=name.name), page="category")
     else:
         abort(404)
@@ -865,7 +865,7 @@ def render_language_books(page, name, order):
                                                             db.Books,
                                                             db.Books.languages.any(db.Languages.lang_code == name),
                                                             [db.Books.timestamp.desc(), order[0]])
-    return render_title_template('index.html', entries=entries, pagination=pagination, id=name,
+    return render_title_template('show.html', entries=entries, pagination=pagination, id=name,
                                  title=_(u"Language: %(name)s", name=lang_name), page="language")
 
 def render_read_books(page, are_read, as_xml=False, order=None, *args, **kwargs):
@@ -909,7 +909,7 @@ def render_read_books(page, are_read, as_xml=False, order=None, *args, **kwargs)
         else:
             name = _(u'Unread Books') + ' (' + str(pagination.total_count) + ')'
             pagename = "unread"
-        return render_title_template('index.html', entries=entries, pagination=pagination,
+        return render_title_template('show.html', entries=entries, pagination=pagination,
                                      title=name, page=pagename)
 
 
@@ -933,7 +933,7 @@ def render_archived_books(page, order):
 
     name = _(u'Archived Books') + ' (' + str(len(archived_book_ids)) + ')'
     pagename = "archived"
-    return render_title_template('index.html', entries=entries, pagination=pagination,
+    return render_title_template('show.html', entries=entries, pagination=pagination,
                                  title=name, page=pagename)
 
 
