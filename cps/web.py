@@ -683,7 +683,7 @@ def render_books_list(data, sort, book_id, page):
         return render_adv_search_results(term, offset, order, config.config_books_per_page)
     elif data == "san":
         entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
-        return render_title_template('san.html', random=random, entries=entries,
+        return render_title_template('sanxue.html', random=random, entries=entries,
                                      title=_(u"Books"), page=data)
     elif data == "cbeta":
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)

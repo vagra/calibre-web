@@ -2662,7 +2662,7 @@ msgstr "生成Kobo Auth 地址"
 msgid "Do you really want to delete the Kobo Token?"
 msgstr "您确定删除Kobo Token吗？"
 
-#: cps/templates/san.html:512
+#: cps/templates/sanxue.html:512
 msgid "Newest Books"
 msgstr "最新书籍"
 

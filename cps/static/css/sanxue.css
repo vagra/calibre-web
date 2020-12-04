@@ -28,8 +28,7 @@
 }
 
 .toc {
-
-    display: grid;
+    
 }
 
 .toc h3{
@@ -41,15 +40,20 @@
   content: "✻ "
 }
 
-.toc col-sm-3,
-.toc col-md-2,
-.toc col-xd-6 {
-
-}
+#list .row,
 .toc .row {
     margin-bottom: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+    flex-wrap: wrap;
 }
+
+#list .row > div
 .toc .row > div {
+    display: flex;
+    flex-direction: column;
 
     box-shadow:
         1px 0 0 0 #B0B0B0,
@@ -58,6 +62,8 @@
         1px 0 0 0 #B0B0B0 inset,
         0 1px 0 0 #B0B0B0 inset;
 }
+
+#list a,
 .toc a{
     display:inline-block;
     text-align: center;
@@ -68,6 +74,7 @@
 
 }
 
-.toc a.hover{
+#list a:hover,
+.toc a:hover{
     color: #316C61;
 }
