@@ -30,6 +30,11 @@
     color: #316C61;
     margin-bottom: 10px;
 }
+
+.about ol {
+    padding-left: 0;
+}
+
 .about p {
     margin-top: 5px;
     margin-bottom: 5px;
