@@ -61,15 +61,10 @@
 <div class="discover load-more">
   <h2 class="{{title}}">{{_(title)}}</h2>
     <div class="filterheader hidden-xs hidden-sm">
-      <a data-toggle="tooltip" id="new" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='new')}}"><span class="glyphicon glyphicon-book"></span> <span class="glyphicon glyphicon-calendar"></span><span class="glyphicon glyphicon-sort-by-order"></span></a>
-      <a id="old" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='old')}}"><span class="glyphicon glyphicon-book"></span> <span class="glyphicon glyphicon-calendar"></span><span class="glyphicon glyphicon-sort-by-order-alt"></span></a>
-      <a id="asc" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='abc')}}"><span class="glyphicon glyphicon-font"></span><span class="glyphicon glyphicon-sort-by-alphabet"></span></a>
-      <a id="desc" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='zyx')}}"><span class="glyphicon glyphicon-font"></span><span class="glyphicon glyphicon-sort-by-alphabet-alt"></span></a>
-      <a id="pub_new" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='pubnew')}}"><span class="glyphicon glyphicon-calendar"></span><span class="glyphicon glyphicon-sort-by-order"></span></a>
-      <a id="pub_old" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='pubold')}}"><span class="glyphicon glyphicon-calendar"></span><span class="glyphicon glyphicon-sort-by-order-alt"></span></a>
-      <!--div class="btn-group character">
-        <a id="no_shelf" class="btn btn-primary" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='pubold')}}"><span class="glyphicon glyphicon-list"></span> <b>{{_('Group by series')}}</b></a>
-      </div-->
+      <a data-toggle="tooltip" id="new" class="btn btn-default" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='new')}}">排序(新-旧)</a>
+      <a id="old" class="btn btn-default" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='old')}}">排序(旧-新)</a>
+      <a id="asc" class="btn btn-default" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='abc')}}">排序(A-Z)</a>
+      <a id="desc" class="btn btn-default" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='zyx')}}">排序(Z-A)</a>
     </div>
 
   <div class="row">
