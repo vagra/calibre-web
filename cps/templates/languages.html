@@ -5,7 +5,7 @@
 <div id="list" class="container-flex">
   <div class="row">
   {% for lang in languages %}
-    <div class="col-sm-3 col-lg-2 col-xs-6">
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
       <a id="list_{{loop.index0}}" href="{{url_for('web.books_list', book_id=lang.lang_code, data=data, sort_param='new')}}">{{lang.name}} ({{lang_counter[loop.index0].bookcount}})
       </a>
     </div>

@@ -31,7 +31,7 @@
   <div class="row">
     {% if entries[0] %}
     {% for entry in entries %}
-    <div id="books" class="col-sm-3 col-lg-2 col-xs-6 book">
+    <div id="books" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book">
       <div class="cover">
         <a href="{{ url_for('web.show_book', book_id=entry.id) }}">
           <img src="//img.sanxuezang.com/assets/{{ entry.path }}/cover.jpg" />
@@ -95,7 +95,7 @@
   <h3>{{_("More by")}} {{ author.name.replace('|',',')|safe }}</h3>
   <div class="row">
     {% for entry in other_books %}
-    <div class="col-sm-3 col-lg-2 col-xs-6 book">
+    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book">
       <div class="cover">
         <a href="https://www.goodreads.com/book/show/{{ entry.gid['#text'] }}" target="_blank" rel="noopener">
           <img src="{{ entry.image_url }}" />
