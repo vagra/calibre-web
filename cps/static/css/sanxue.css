@@ -1,20 +1,9 @@
-.page {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.page .main {
-    display: flex;
-    flex-direction: column;
-}
-
-.main .footer {
-    position: absolute;
+.footer {
     height: 32px;
+    width: 100%;
+    margin-top: 32px;
     bottom: 0;
+    text-align: center;
 }
 
 .navbar-form .input-group .form-control,
