@@ -31,11 +31,15 @@
 
 }
 
+.random-books h3,
+.newest-books h3,
 .toc h3{
     color: #316C61;
     margin-left: -20px;
 }
 
+.random-books h3:before,
+.newest-books h3:before,
 .toc h3:before {
   content: "✻ "
 }

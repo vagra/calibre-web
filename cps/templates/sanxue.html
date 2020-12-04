@@ -450,7 +450,7 @@
 
 {% if g.user.show_detail_random() %}
 <div class="discover random-books">
-  <h2 class="random-books">{{_('Random Books')}}</h2>
+  <h3>{{_('Random Books')}}</h3>
   <div class="row">
    {% for entry in random %}
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book" id="books_rand">
@@ -507,8 +507,8 @@
 </div>
 {% endif %}
 
-<div class="discover">
-  <h2 class="{{title}}">{{_('Newest Books')}}</h2>
+<div class="discover newest-books">
+  <h3>{{_('Newest Books')}}</h3>
   <div class="row">
     {% if entries[0] %}
     {% for entry in entries %}
