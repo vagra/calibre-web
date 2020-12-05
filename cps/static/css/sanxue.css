@@ -14,6 +14,14 @@
     font-family: "Kaiti SC",STKaiti,"AR PL UKai CN","AR PL UKai HK","AR PL UKai TW","AR PL UKai TW MBE","AR PL KaitiM GB",KaiTi,KaiTi_GB2312,DFKai-SB,"TW\-Kai",'Ma Shan Zheng' !important;
 }
 
+.navbar-brand {
+    padding: 0 !important;
+}
+.navbar-brand img {
+    width: 135px;
+    height: 50px;
+}
+
 .about {
     padding-top: 48px;
     padding-bottom: 24px;
