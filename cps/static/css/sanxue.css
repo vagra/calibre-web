@@ -71,6 +71,12 @@
   content: "✻ "
 }
 
+.random-books h3 > a,
+.newest-books h3 > a,
+.toc h3 > a{
+    height: 24px;
+}
+
 .about .row,
 #list .row,
 .toc .row {
