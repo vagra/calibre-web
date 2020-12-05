@@ -23,24 +23,11 @@
     text-align: right;
 }
 
-.about .form-control,
-.about .input-group-btn {
-    margin-top: 20px;
-    vertical-align: bottom;
-}
-
-.about .advanced {
-    display: table-cell;
-    text-align: left;
-    vertical-align: bottom;
-    padding-left: 10px;
-}
-
 .about .lotus img {
     display: inline-block !important;
-    max-width: 150px !important;
-    width: 150px;
-    height: 90px;
+    max-width: 136px !important;
+    width: 136px;
+    height: 80px;
 }
 
 .about h4 {
@@ -86,9 +73,10 @@
     flex-wrap: wrap;
 }
 
-about .row > div {
+.about .row > div {
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 #list .row > div,
