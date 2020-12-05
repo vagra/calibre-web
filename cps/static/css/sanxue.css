@@ -76,7 +76,7 @@
 .about .row > div {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: auto 0;
 }
 
 #list .row > div,
