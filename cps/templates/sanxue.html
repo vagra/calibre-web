@@ -26,7 +26,7 @@
 </div>
 
 <div class="container-flex toc">
-  <h3>从零开始入门佛学</h3>
+  <h3><a id="1"></a>从零开始入门佛学</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -46,7 +46,8 @@
     </div>
 
   </div>
-  <h3>佛经系列</h3>
+
+  <h3><a id="2"></a>佛经系列</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -72,7 +73,7 @@
     </div>
   </div>
 
-  <h3>祖师大德</h3>
+  <h3><a id="3"></a>祖师大德</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -173,7 +174,7 @@
     </div>
   </div>
 
-  <h3>近当代法师</h3>
+  <h3><a id="4"></a>近当代法师</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -238,7 +239,7 @@
     </div>
   </div>
 
-  <h3>居士大德</h3>
+  <h3><a id="5"></a>居士大德</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -297,7 +298,7 @@
     </div>
   </div>
 
-  <h3>丛书</h3>
+  <h3><a id="6"></a>丛书</h3>
 
   <div class="row">
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -344,7 +345,7 @@
     </div>
   </div>
 
-  <h3>出版人</h3>
+  <h3><a id="7"></a>出版人</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -415,7 +416,7 @@
     </div>
   </div>
 
-  <h3>其他</h3>
+  <h3><a id="8"></a>其他</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -426,7 +427,7 @@
     </div>
   </div>
 
-  <h3>海外译作</h3>
+  <h3><a id="9"></a>海外译作</h3>
 
   <div class="row">
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
@@ -434,7 +435,7 @@
     </div>
   </div>
 
-  <h3>英文作者</h3>
+  <h3><a id="10"></a>英文作者</h3>
 
   <div class="row">
     <div class="col-sm-6 col-lg-3 col-xs-12">
@@ -456,7 +457,7 @@
 
 {% if g.user.show_detail_random() %}
 <div class="discover random-books">
-  <h3>{{_('Random Books')}}</h3>
+  <h3><a id="random"></a>{{_('Random Books')}}</h3>
   <div class="row">
    {% for entry in random %}
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book" id="books_rand">
@@ -514,7 +515,7 @@
 {% endif %}
 
 <div class="discover newest-books">
-  <h3>{{_('Newest Books')}}</h3>
+  <h3><a id="newest"></a>{{_('Newest Books')}}</h3>
   <div class="row">
     {% if entries[0] %}
     {% for entry in entries %}
@@ -583,10 +584,10 @@
       &nbsp;
     </div>
     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-      <h4 class="media-heading">三学藏佛教电子书站　使用说明</h4>
+      <h4 class="media-heading"><a id="about"></a>三学藏佛教电子书站　使用说明</h4>
       <ol>
       <li>佛经、佛书、作者姓名，可直接在左上角搜索栏中搜索。</li>
-      <li>如果你是佛法萌新，欢迎参阅 <a href = "http://sanxuejiaoguan.com/">三学教观社网站</a> 及 “从零开始入门佛学” 书单</li>
+      <li>如果你是佛法萌新，欢迎参阅 <a href="https://sanxuejiaoguan.com/">三学教观社网站</a> 及 <a href="#1">从零开始入门佛学</a> 书单</li>
       <li>注册并设置了邮箱后，可以使用“发送到 Kindle”功能：先在个人资料中填写您的 Kindle 邮箱，再把 admin@sanxuezang.com 加入您的 Kindle 邮箱的白名单。</li>
       <li>书籍投稿、批量下载，请联系：1465802737@qq.com</li>
       <ol>
