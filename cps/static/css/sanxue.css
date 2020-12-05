@@ -7,24 +7,39 @@
 }
 
 .navbar-form .input-group .form-control,
-.input-group-sm > .input-group-btn > .btn {
-    height: 36px;
-    line-height: 1;
-    font-family: "Kaiti SC",STKaiti,"AR PL UKai CN","AR PL UKai HK","AR PL UKai TW","AR PL UKai TW MBE","AR PL KaitiM GB",KaiTi,KaiTi_GB2312,DFKai-SB,"TW\-Kai",'Ma Shan Zheng' !important;
-    font-size: 24px;
+.sanxue-form .input-group .form-control,
+.navbar-form .input-group-btn > .btn,
+.sanxue-form .input-group-btn > .btn {
+    font-family: 'Grand Hotel', cursive;
 }
 
 .navbar-brand {
-    font-family: "Kaiti SC",STKaiti,"AR PL UKai CN","AR PL UKai HK","AR PL UKai TW","AR PL UKai TW MBE","AR PL KaitiM GB",KaiTi,KaiTi_GB2312,DFKai-SB,"TW\-Kai",'Ma Shan Zheng' !important;
     padding: 18px 15px;
 }
 
-.about .row {
-    margin-bottom: 15px;
+.about {
+    padding-top: 48px;
+    padding-bottom: 24px;
 }
 
-.about .row > div {
+.about .lotus {
+    text-align: right;
+    line-height: 50px;
+}
 
+.about .search {
+}
+
+.about .advanced {
+    text-align: left;
+    line-height: 50px;
+}
+
+.about .lotus img {
+    display: inline-block !important;
+    max-width: 80px !important;
+    width: 80px;
+    height: 50px;
 }
 
 .about h4 {
@@ -42,10 +57,6 @@
     margin-bottom: 5px;
 }
 
-.toc {
-
-}
-
 .random-books h3,
 .newest-books h3,
 .toc h3{
@@ -59,6 +70,7 @@
   content: "✻ "
 }
 
+.about .row,
 #list .row,
 .toc .row {
     margin-bottom: 15px;
@@ -67,6 +79,11 @@
     display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
+}
+
+about .row > div{
+    display: flex;
+    flex-direction: column;
 }
 
 #list .row > div,

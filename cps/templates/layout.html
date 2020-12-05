@@ -42,9 +42,10 @@
           </button>
           <a class="navbar-brand" href="{{url_for('web.index')}}">{{instance}}</a>
         </div>
+        {% if page not in['sanxue', 'advsearch'] %}
         {% if g.user.is_authenticated or g.allow_anonymous %}
           <form class="navbar-form navbar-left" role="search" action="{{url_for('web.search')}}" method="GET">
-            <div class="form-group input-group input-group-sm">
+            <div class="form-group input-group input-group-md">
               <label for="query" class="sr-only">{{_('Search')}}</label>
               <input type="text" class="form-control" id="query" name="query" placeholder="{{_('Search Library')}}" value="{{searchterm}}">
               <span class="input-group-btn">
@@ -53,11 +54,14 @@
             </div>
           </form>
         {% endif %}
+        {% endif %}
         <div class="navbar-collapse collapse">
+          {% if page not in['sanxue', 'advsearch'] %}
           {% if g.user.is_authenticated or g.allow_anonymous %}
           <ul class="nav navbar-nav ">
             <li><a href="{{url_for('web.advanced_search')}}" id="advanced_search"><span class="glyphicon glyphicon-search"></span><span class="hidden-sm"> {{_('Advanced Search')}}</span></a></li>
           </ul>
+          {% endif %}
           {% endif %}
           <ul class="nav navbar-nav navbar-right" id="main-nav">
             {% if g.user.is_authenticated or g.allow_anonymous %}

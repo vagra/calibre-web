@@ -3,22 +3,42 @@
 
 <div class="container-flex about">
   <div class="row">
-    <div class="hidden-xs hidden-sm col-md-3 col-lg-2">
-      <a href="#">
-        <img src="/static/img/lotus.png" alt="三学藏"/>
-      </a>
+    <div class="hidden-xs hidden-sm col-md-2 col-lg-2 lotus">
+      <img src="/static/img/lotus.png" alt="三学藏"/>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
-        <h4 class="media-heading">三学藏佛教电子书站　使用说明</h4>
-        <ol>
-        <li>佛经、佛书、作者姓名，可直接在左上角搜索栏中搜索。</li>
-        <li>如果你是佛法萌新，欢迎参阅 <a href = "http://sanxuejiaoguan.com/">三学教观社网站</a> 及 “从零开始入门佛学” 书单</li>
-        <li>注册并设置了邮箱后，可以使用“发送到 Kindle”功能：先在个人资料中填写您的 Kindle 邮箱，再把 admin@sanxuezang.com 加入您的 Kindle 邮箱的白名单。</li>
-        <li>书籍投稿、批量下载，请联系：1465802737@qq.com</li>
-        <ol>
-
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 search">
+    {% if g.user.is_authenticated or g.allow_anonymous %}
+      <form class="sanxue-form" role="search" action="{{url_for('web.search')}}" method="GET">
+        <div class="form-group input-group input-group-lg">
+          <label for="query" class="sr-only">{{_('Search')}}</label>
+          <input type="text" class="form-control" id="query" name="query" placeholder="{{_('Search Library')}}" value="{{searchterm}}">
+          <span class="input-group-btn">
+            <button type="submit" id="query_submit" class="btn btn-default">{{_('Search')}}</button>
+          </span>
+        </div>
+      </form>
+    {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 advanced">
+      <a href="{{url_for('web.advanced_search')}}"><span class="glyphicon glyphicon-search"></span><span class="hidden-sm"> {{_('Advanced Search')}}</span></a>
     </div>
   </div>
+  
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+      &nbsp;
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+      <h4 class="media-heading">三学藏佛教电子书站　使用说明</h4>
+      <ol>
+      <li>佛经、佛书、作者姓名，可直接在左上角搜索栏中搜索。</li>
+      <li>如果你是佛法萌新，欢迎参阅 <a href = "http://sanxuejiaoguan.com/">三学教观社网站</a> 及 “从零开始入门佛学” 书单</li>
+      <li>注册并设置了邮箱后，可以使用“发送到 Kindle”功能：先在个人资料中填写您的 Kindle 邮箱，再把 admin@sanxuezang.com 加入您的 Kindle 邮箱的白名单。</li>
+      <li>书籍投稿、批量下载，请联系：1465802737@qq.com</li>
+      <ol>
+    </div>
+  </div>
+
 </div>
 
 <div class="container-flex toc">
