@@ -24,22 +24,26 @@
 
 .about .lotus {
     text-align: right;
-    line-height: 50px;
 }
 
-.about .search {
+.about .form-control,
+.about .input-group-btn {
+    margin-top: 20px;
+    vertical-align: bottom;
 }
 
 .about .advanced {
+    display: table-cell;
     text-align: left;
-    line-height: 50px;
+    vertical-align: bottom;
+    padding-left: 10px;
 }
 
 .about .lotus img {
     display: inline-block !important;
-    max-width: 80px !important;
-    width: 80px;
-    height: 50px;
+    max-width: 150px !important;
+    width: 150px;
+    height: 90px;
 }
 
 .about h4 {
@@ -81,7 +85,7 @@
     flex-wrap: wrap;
 }
 
-about .row > div{
+about .row > div {
     display: flex;
     flex-direction: column;
 }
