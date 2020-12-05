@@ -10,10 +10,11 @@
 .sanxue-form .input-group .form-control,
 .navbar-form .input-group-btn > .btn,
 .sanxue-form .input-group-btn > .btn {
-    font-family: 'Grand Hotel', cursive;
+    font-family: "Kaiti SC",STKaiti,"AR PL UKai CN","AR PL UKai HK","AR PL UKai TW","AR PL UKai TW MBE","AR PL KaitiM GB",KaiTi,KaiTi_GB2312,DFKai-SB,"TW\-Kai",'Ma Shan Zheng' !important;
 }
 
 .navbar-brand {
+    font-family: "Kaiti SC",STKaiti,"AR PL UKai CN","AR PL UKai HK","AR PL UKai TW","AR PL UKai TW MBE","AR PL KaitiM GB",KaiTi,KaiTi_GB2312,DFKai-SB,"TW\-Kai",'Ma Shan Zheng' !important;
     padding: 18px 15px;
 }
 
