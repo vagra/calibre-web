@@ -681,7 +681,7 @@ def render_books_list(data, sort, book_id, page):
         term = json.loads(flask_session['query'])
         offset = int(int(config.config_books_per_page) * (page - 1))
         return render_adv_search_results(term, offset, order, config.config_books_per_page)
-    elif data == "san":
+    elif data == "sanxue":
         entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
         return render_title_template('sanxue.html', random=random, entries=entries,
                                      title=_(u"Books"), page=data)
@@ -693,14 +693,14 @@ def render_books_list(data, sort, book_id, page):
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
         return render_title_template('budaedu.html', entries=entries,
                                      title=_(u"BudaEdu Books"), page=data)
-    elif data == "new":
+    elif data == "new" or "newest":
         entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
         return render_title_template('show.html', entries=entries, pagination=pagination,
                                      title=_(u"New Books"), page=data)
     else:
-        website = data or "newest"
-        entries, random, pagination = calibre_db.fill_indexpage(page, 0, db.Books, True, order)
-        return render_title_template('index.html', random=random, entries=entries, pagination=pagination,
+        website = data or "sanxue"
+        entries, random, pagination = calibre_db.fill_indexpage(page, 6, db.Books, True, order)
+        return render_title_template('sanxue.html', random=random, entries=entries,
                                      title=_(u"Books"), page=website)
 
 
@@ -986,14 +986,14 @@ def render_search_results(term, offset=None, order=None, limit=None):
 @login_required_if_no_ano
 def index(page):
     sort_param = (request.args.get('sort') or 'stored').lower()
-    return render_books_list("newest", sort_param, 1, page)
+    return render_books_list("sanxue", sort_param, 1, page)
 
 
-@web.route("/san")
+@web.route("/sanxue")
 @login_required_if_no_ano
 def san():
     sort_param = (request.args.get('sort') or 'stored').lower()
-    return render_books_list("san", sort_param, 1, 1)
+    return render_books_list("sanxue", sort_param, 1, 1)
 
 
 @web.route("/cbeta")
