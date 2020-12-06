@@ -8,7 +8,7 @@
       <div class="cover">
         {% if entry.has_cover is defined %}
           <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
-            <img src="//img.sanxuezang.com/assets/{{ entry.path }}/cover.jpg" alt="{{ entry.title }}" />
+            <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
           </a>
         {% endif %}
       </div>
