@@ -27,16 +27,20 @@
     padding-bottom: 24px;
 }
 
+.about .advanced {
+    line-height: 46px;
+}
+
 .about .lotus {
     text-align: right;
 }
 
 .about .lotus img {
     display: inline-block !important;
-    max-width: 136px !important;
-    width: 136px;
-    height: 80px;
-    margin-top: -20px;
+    max-width: 102px !important;
+    width: 102px;
+    height: 60px;
+    margin-top: -10px;
 }
 
 .about h4 {
