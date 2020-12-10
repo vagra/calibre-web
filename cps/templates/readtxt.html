@@ -25,13 +25,6 @@
             height: 100%;
           }
 
-          #area {
-            width: 90%;
-            height: 90%;
-            margin: 2% auto;
-            max-width: 1250px;
-          }
-
           #area iframe {
             border: none;
           }
@@ -42,10 +35,18 @@
             white-space: pre;
             margin: 1em 0;
           }
+
           #area{
             overflow:hidden;
           }
+
           @media screen and (min-width: 993px) {
+            #area {
+              width: 90%;
+              height: 90%;
+              margin: 2% auto;
+              max-width: 1250px;
+            }
             pre {
               white-space: pre-wrap;
               word-wrap: break-word;
@@ -59,7 +60,14 @@
               position:relative;
             }
           }
+
           @media screen and (max-width: 992px) {
+            #area {
+              width: 90%;
+              height: 90%;
+              margin: 2% auto;
+              max-width: 992px;
+            }
             pre {
                 white-space: pre-wrap;
                 word-wrap: break-word;
@@ -67,6 +75,9 @@
                 column-count: 1;
                 -webkit-columns: 1;
                 -moz-columns: 1;
+                column-gap:20px;
+                -moz-column-gap:20px;
+                -webkit-column-gap:20px;
                 position:relative;
             }
           }
@@ -78,8 +89,8 @@
     </head>
     <body>
         <div id="readmain">
-          <div id="left" class="arrow" >‹</div>
           <div id="area"><pre id="content" class="content"></pre></div>
+          <div id="left" class="arrow" >‹</div>
           <div id="right" class="arrow">›</div>
         </div>
 
