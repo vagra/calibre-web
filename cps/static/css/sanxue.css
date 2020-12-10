@@ -123,3 +123,21 @@
 .toc a:hover{
     color: #316C61;
 }
+
+#viewer {
+    width: 90% !important;
+    height: 90% !important;
+}
+
+
+#left,
+#prev {
+  left: 0px !important;
+  padding-right: 120px !important;
+}
+
+#right,
+#next {
+  right: 0px !important;
+  padding-left: 120px !important;
+}
