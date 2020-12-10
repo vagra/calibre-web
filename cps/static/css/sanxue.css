@@ -169,14 +169,14 @@
 }
 
 #area{
-overflow:hidden;
+    width: 95%;
+    height: 95%;
+    margin: 2% auto;
+    overflow:hidden;
 }
 
 @media screen and (min-width: 993px) {
     #area {
-        width: 95%;
-        height: 95%;
-        margin: 2% auto;
         max-width: 1250px;
     }
     #content {
@@ -188,12 +188,10 @@ overflow:hidden;
 
 @media screen and (max-width: 992px) {
     #area {
-        width: 95%;
-        height: 95%;
-        margin: 2% auto;
         max-width: 992px;
     }
     #content {
+        font-size: 23px;
         column-count: 1;
         -webkit-columns: 1;
         -moz-columns: 1;
