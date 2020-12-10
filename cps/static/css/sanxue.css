@@ -123,3 +123,79 @@
 .toc a:hover{
     color: #316C61;
 }
+
+
+#readbody {
+    background: #EEF7F2;
+    margin: 0;
+    padding: 0;
+}
+
+#readmain {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#viewer {
+    width: 90% !important;
+    height: 90% !important;
+}
+
+#left,
+#prev {
+    left: 0px !important;
+}
+
+#right,
+#next {
+    right: 0px !important;
+}
+
+#area iframe {
+    border: none;
+}
+
+#content {
+    display: block;
+    font-family: Georgia,"Courier New","Times New Roman","Nimbus Roman No9 L","Songti SC","Noto Serif CJK SC","Source Han Serif SC","Source Han Serif CN",STSong,"AR PL New Sung","AR PL SungtiL GB",NSimSun,SimSun,"TW\-Sung","WenQuanYi Bitmap Song","AR PL UMing CN","AR PL UMing HK","AR PL UMing TW","AR PL UMing TW MBE",PMingLiU,MingLiU,serif;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    column-gap:20px;
+    -moz-column-gap:20px;
+    -webkit-column-gap:20px;
+    position:relative;
+}
+
+#area{
+overflow:hidden;
+}
+
+@media screen and (min-width: 993px) {
+    #area {
+        width: 95%;
+        height: 95%;
+        margin: 2% auto;
+        max-width: 1250px;
+    }
+    #content {
+        column-count:2;
+        -webkit-columns:2;
+        -moz-columns:2;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #area {
+        width: 95%;
+        height: 95%;
+        margin: 2% auto;
+        max-width: 992px;
+    }
+    #content {
+        column-count: 1;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+    }
+}

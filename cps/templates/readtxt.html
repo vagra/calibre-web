@@ -8,103 +8,15 @@
         <meta name="viewport" content="width=device-width">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="//cdn.sanxuezang.com/static/css/main.css" type="text/css"/>
-
+        <link rel="stylesheet" href="/static/css/sanxue.css" type="text/css"/>
         <!-- EPUBJS Renderer -->
         <!--<script src="../build/epub.js"></script>-->
         <script src="//cdn.sanxuezang.com/static/js/libs/jquery.min.js"></script>
-
-        <style type="text/css">
-
-          body {
-            background: #EEF7F2;
-            margin: 0;
-            padding: 0;
-          }
-
-          #readmain {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          }
-
-          #viewer {
-              width: 90% !important;
-              height: 90% !important;
-          }
-
-          #left,
-          #prev {
-            left: 0px !important;
-          }
-
-          #right,
-          #next {
-            right: 0px !important;
-          }
-
-          #area iframe {
-            border: none;
-          }
-
-          xmp, pre, plaintext {
-            display: block;
-            font-family: -moz-fixed;
-            white-space: pre;
-            margin: 1em 0;
-          }
-
-          #area{
-            overflow:hidden;
-          }
-
-          @media screen and (min-width: 993px) {
-            #area {
-              width: 95%;
-              height: 95%;
-              margin: 2% auto;
-              max-width: 1250px;
-            }
-            pre {
-              white-space: pre-wrap;
-              word-wrap: break-word;
-              font-family: -moz-fixed;
-              column-count:2;
-              -webkit-columns:2;
-              -moz-columns:2;
-              column-gap:20px;
-              -moz-column-gap:20px;
-              -webkit-column-gap:20px;
-              position:relative;
-            }
-          }
-
-          @media screen and (max-width: 992px) {
-            #area {
-              width: 95%;
-              height: 95%;
-              margin: 2% auto;
-              max-width: 992px;
-            }
-            pre {
-                white-space: pre-wrap;
-                word-wrap: break-word;
-                font-family: -moz-fixed;
-                column-count: 1;
-                -webkit-columns: 1;
-                -moz-columns: 1;
-                column-gap:20px;
-                -moz-column-gap:20px;
-                -webkit-column-gap:20px;
-                position:relative;
-            }
-          }
-        </style>
-
-         <script>
+        <script>
             "use strict";
         </script>
     </head>
-    <body>
+    <body id="readbody">
         <div id="readmain">
           <div id="area"><pre id="content" class="content"></pre></div>
           <div id="left" class="arrow" >‹</div>
