@@ -242,7 +242,7 @@ class User(UserBase, Base):
     kindle_mail = Column(String(120), default="")
     shelf = relationship('Shelf', backref='user', lazy='dynamic', order_by='Shelf.name')
     downloads = relationship('Downloads', backref='user', lazy='dynamic')
-    locale = Column(String(2), default="en")
+    locale = Column(String(2), default="zh_Hans_CN")
     sidebar_view = Column(Integer, default=1)
     default_language = Column(String(3), default="all")
     mature_content = Column(Boolean, default=True)
@@ -501,6 +501,16 @@ class RemoteAuthToken(Base):
 
     def __repr__(self):
         return '<Token %r>' % self.id
+
+
+def add_token(user: User):
+    auth_token = RemoteAuthToken()
+    auth_token.user_id = user.id
+    auth_token.token_type = 9
+    auth_token.verified = True
+    session.add(auth_token)
+    session.commit()
+
 
 
 # Migrate database to current version, has to be updated after every database change. Currently migration from

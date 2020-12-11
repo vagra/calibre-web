@@ -29,6 +29,7 @@ import mimetypes
 import traceback
 import binascii
 import re
+from cps.yzb import validate
 
 from babel.dates import format_date
 from babel import Locale as LC
@@ -1641,6 +1642,90 @@ def logout():
             logout_oauth_user()
     log.debug(u"User logged out")
     return redirect(url_for('web.login'))
+
+
+@web.route('/yzb/login', methods=['GET'])
+def yzb_login():
+    qtype = request.args.get("type")
+    uid = request.args.get("uid")
+    token = request.args.get("token")
+    nouce = request.args.get("nouce")
+    qnext = request.args.get("next")
+    log.debug(request.args)
+
+    nickname = 'yzb_' + uid
+    email = nickname + '@sanxuezang.com'
+
+    if current_user is not None and current_user.is_authenticated:
+        if (current_user.nickname == nickname):
+            log.info('YZB User "%s", "%s" already logged in.', current_user.id, current_user.nickname)
+            flash(_(u"Already logged in as: %(nickname)s", nickname=current_user.nickname), category="warning")
+            return redirect(qnext)
+        else:
+            logout_user()
+            log.info('YZB User "%s", "%s" logged out', current_user.id, current_user.nickname)
+
+    existing_user = ub.session.query(ub.User).filter(
+                        func.lower(ub.User.nickname) == nickname.lower()).first()
+
+    if not validate(token, uid, nouce):
+        log.warning('Token validation failed.')
+        flash(_(u"Token validation failed."), category="error")
+        return redirect(url_for('web.index'))
+
+    if not existing_user:
+        content = ub.User()
+
+        log.info('YZB User "%s" not exist, register...', nickname)
+        content.nickname = nickname
+        content.email = email
+        password = generate_random_password()
+        content.password = generate_password_hash(password)
+        content.role = config.config_default_role
+        content.sidebar_view = config.config_default_show
+
+        try:
+            ub.session.add(content)
+            ub.session.commit()
+            if feature_support['oauth']:
+                register_user_with_oauth(content)
+        except Exception:
+            ub.session.rollback()
+            log.warning('YZB registering failed, An unknown error occurred.')
+            flash(_(u"Registering failed, An unknown error occurred."), category="error")
+            return redirect(url_for('web.index'))
+
+        log.info('YZB Registering Successful. name: "%s"', nickname)
+        user = ub.session.query(ub.User).filter(
+                        func.lower(ub.User.nickname) == nickname.lower()).first()
+        log.debug('new user: "%s", "%s"', user.id, user.nickname)
+
+        if user and user.nickname != "Guest":
+            login_user(user, remember=True)
+            config.config_is_initial = False
+
+            ub.add_token(user)
+
+            log.info('YZB New User "%s" logged in.', user.nickname)
+            flash(_(u"New User %(nickname)s login successful!", nickname=user.nickname), category="success")
+            return redirect(qnext)
+        else:
+            log.warning('YZB login failed, An unknown error occurred.')
+            flash(_(u"Login failed, An unknown error occurred."), category="error")
+            return redirect(url_for('web.index'))
+
+    else:
+        log.debug('existing user: "%s", "%s"', existing_user.id, existing_user.nickname)
+
+        login_user(existing_user, remember=True)
+
+        ub.add_token(existing_user)
+
+        log.info('YZB Existing User "%s" logged in.', existing_user.nickname)
+        flash(_(u"User %(nickname)s login successful!", nickname=existing_user.nickname), category="success")
+        return redirect(qnext)
+
+    return redirect(url_for('web.index'))
 
 
 @web.route('/remote/login')

@@ -4,50 +4,6 @@
 {%- endmacro %}
 {% block body %}
 <div class="container-fluid">
-  <div class="row">
-    <div class="col">
-      <h2>{{_('Users')}}</h2>
-      <table class="table table-striped" id="table_user">
-        <tr>
-            <th>{{_('Username')}}</th>
-            <th>{{_('E-mail Address')}}</th>
-            <th>{{_('Send to Kindle E-mail Address')}}</th>
-            <th>{{_('Downloads')}}</th>
-            <th class="hidden-xs ">{{_('Admin')}}</th>
-            <th class="hidden-xs hidden-sm">{{_('Password')}}</th>
-            <th class="hidden-xs hidden-sm">{{_('Upload')}}</th>
-            <th class="hidden-xs hidden-sm">{{_('Download')}}</th>
-            <th class="hidden-xs hidden-sm hidden-md">{{_('View Books')}}</th>
-            <th class="hidden-xs hidden-sm hidden-md">{{_('Edit')}}</th>
-            <th class="hidden-xs hidden-sm hidden-md">{{_('Delete')}}</th>
-            <th class="hidden-xs hidden-sm hidden-md">{{_('Public Shelf')}}</th>
-        </tr>
-        {% for user in allUser %}
-          {% if not user.role_anonymous() or config.config_anonbrowse %}
-          <tr>
-            <td><a href="{{url_for('admin.edit_user', user_id=user.id)}}">{{user.nickname}}</a></td>
-            <td>{{user.email}}</td>
-            <td>{{user.kindle_mail}}</td>
-            <td>{{user.downloads.count()}}</td>
-            <td class="hidden-xs">{{ display_bool_setting(user.role_admin()) }}</td>
-            <td class="hidden-xs hidden-sm">{{ display_bool_setting(user.role_passwd()) }}</td>
-            <td class="hidden-xs hidden-sm">{{ display_bool_setting(user.role_upload()) }}</td>
-            <td class="hidden-xs hidden-sm">{{ display_bool_setting(user.role_download()) }}</td>
-            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_viewer()) }}</td>
-            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_edit()) }}</td>
-            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_delete_books()) }}</td>
-            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_edit_shelfs()) }}</td>
-          </tr>
-          {% endif %}
-        {% endfor %}
-      </table>
-        <div class="btn btn-default" id="admin_new_user"><a href="{{url_for('admin.new_user')}}">{{_('Add New User')}}</a></div>
-      {% if (config.config_login_type == 1) %}
-        <div class="btn btn-default" id="import_ldap_users" data-toggle="modal" data-target="#StatusDialog">{{_('Import LDAP Users')}}</div>
-        <!--a href="#" id="import_ldap_users" name="import_ldap_users"><button type="submit" class="btn btn-default">{{_('Import LDAP Users')}}</button></a-->
-      {% endif %}
-    </div>
-  </div>
 
   <div class="row">
     <div class="col">
@@ -163,6 +119,51 @@
       <div class="hidden" id="update_error"> <span>{{update_error}}</span></div>
       <div class="btn btn-primary" id="check_for_update">{{_('Check for Update')}}</div>
       <div class="btn btn-primary hidden" id="perform_update" data-toggle="modal" data-target="#StatusDialog">{{_('Perform Update')}}</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2>{{_('Users')}}</h2>
+      <table class="table table-striped" id="table_user">
+        <tr>
+            <th>{{_('Username')}}</th>
+            <th>{{_('E-mail Address')}}</th>
+            <th>{{_('Send to Kindle E-mail Address')}}</th>
+            <th>{{_('Downloads')}}</th>
+            <th class="hidden-xs ">{{_('Admin')}}</th>
+            <th class="hidden-xs hidden-sm">{{_('Password')}}</th>
+            <th class="hidden-xs hidden-sm">{{_('Upload')}}</th>
+            <th class="hidden-xs hidden-sm">{{_('Download')}}</th>
+            <th class="hidden-xs hidden-sm hidden-md">{{_('View Books')}}</th>
+            <th class="hidden-xs hidden-sm hidden-md">{{_('Edit')}}</th>
+            <th class="hidden-xs hidden-sm hidden-md">{{_('Delete')}}</th>
+            <th class="hidden-xs hidden-sm hidden-md">{{_('Public Shelf')}}</th>
+        </tr>
+        {% for user in allUser %}
+          {% if not user.role_anonymous() or config.config_anonbrowse %}
+          <tr>
+            <td><a href="{{url_for('admin.edit_user', user_id=user.id)}}">{{user.nickname}}</a></td>
+            <td>{{user.email}}</td>
+            <td>{{user.kindle_mail}}</td>
+            <td>{{user.downloads.count()}}</td>
+            <td class="hidden-xs">{{ display_bool_setting(user.role_admin()) }}</td>
+            <td class="hidden-xs hidden-sm">{{ display_bool_setting(user.role_passwd()) }}</td>
+            <td class="hidden-xs hidden-sm">{{ display_bool_setting(user.role_upload()) }}</td>
+            <td class="hidden-xs hidden-sm">{{ display_bool_setting(user.role_download()) }}</td>
+            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_viewer()) }}</td>
+            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_edit()) }}</td>
+            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_delete_books()) }}</td>
+            <td class="hidden-xs hidden-sm hidden-md">{{ display_bool_setting(user.role_edit_shelfs()) }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+        <div class="btn btn-default" id="admin_new_user"><a href="{{url_for('admin.new_user')}}">{{_('Add New User')}}</a></div>
+      {% if (config.config_login_type == 1) %}
+        <div class="btn btn-default" id="import_ldap_users" data-toggle="modal" data-target="#StatusDialog">{{_('Import LDAP Users')}}</div>
+        <!--a href="#" id="import_ldap_users" name="import_ldap_users"><button type="submit" class="btn btn-default">{{_('Import LDAP Users')}}</button></a-->
+      {% endif %}
     </div>
   </div>
 </div>
