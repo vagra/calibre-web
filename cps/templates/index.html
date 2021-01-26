@@ -3,12 +3,15 @@
 {% if g.user.show_detail_random() and random %}
 <div class="discover random-books">
   <h2 class="random-books">{{_('Discover (Random Books)')}}</h2>
-  <div class="row">
+  <div class="row display-flex">
    {% for entry in random %}
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book" id="books_rand">
       <div class="cover">
           <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
-              <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
+              <span class="img">
+                <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
+                {% if entry.id in read_book_ids %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+              </span>
           </a>
       </div>
       <div class="meta">
@@ -67,13 +70,16 @@
       <a id="desc" class="btn btn-default" href="{{url_for('web.books_list', data=page, book_id=id, sort_param='zyx')}}">排序(Z-A)</a>
     </div>
 
-  <div class="row">
+  <div class="row display-flex">
     {% if entries[0] %}
     {% for entry in entries %}
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book" id="books">
       <div class="cover">
           <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
+            <span class="img">
               <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}"/>
+              {% if entry.id in read_book_ids %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+            </span>
           </a>
       </div>
       <div class="meta">
@@ -98,7 +104,7 @@
             {% endif %}
           {% endfor %}
           {% for format in entry.data %}
-            {% if format.format|lower == 'mp3' %}
+            {% if format.format|lower in g.constants.EXTENSIONS_AUDIO %}
             <span class="glyphicon glyphicon-music"></span>
             {% endif %}
           {%endfor%}

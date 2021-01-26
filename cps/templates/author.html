@@ -28,13 +28,16 @@
       <a id="asc" class="btn btn-default" href="{{url_for('web.books_list', data='author', book_id=id, sort_param='abc')}}">排序(A-Z)</a>
       <a id="desc" class="btn btn-default" href="{{url_for('web.books_list', data='author', book_id=id, sort_param='zyx')}}">排序(Z-A)</a>
     </div>
-  <div class="row">
+  <div class="row display-flex">
     {% if entries[0] %}
     {% for entry in entries %}
     <div id="books" class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book">
       <div class="cover">
         <a href="{{ url_for('web.show_book', book_id=entry.id) }}">
-          <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" />
+            <span class="img">
+              <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" />
+              {% if entry.id in read_book_ids %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+            </span>
         </a>
       </div>
       <div class="meta">
@@ -59,7 +62,7 @@
             {% endif %}
           {% endfor %}
           {% for format in entry.data %}
-            {% if format.format|lower == 'mp3' %}
+            {% if format.format|lower in g.constants.EXTENSIONS_AUDIO %}
             <span class="glyphicon glyphicon-music"></span>
             {% endif %}
           {% endfor %}

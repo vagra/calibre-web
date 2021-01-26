@@ -68,7 +68,7 @@ from flask_login import login_user, login_required
 from flask_babel import gettext as _
 
 from . import logger, ub, lm
-from .web import render_title_template
+from .render_template import render_title_template
 
 try:
     from functools import wraps
@@ -147,7 +147,7 @@ def generate_auth_token(user_id):
             auth_token.token_type = 1
 
             ub.session.add(auth_token)
-            ub.session.commit()
+            ub.session_commit()
         return render_title_template(
             "generate_kobo_auth_url.html",
             title=_(u"Kobo Setup"),
@@ -164,5 +164,5 @@ def delete_auth_token(user_id):
     # Invalidate any prevously generated Kobo Auth token for this user.
     ub.session.query(ub.RemoteAuthToken).filter(ub.RemoteAuthToken.user_id == user_id)\
         .filter(ub.RemoteAuthToken.token_type==1).delete()
-    ub.session.commit()
-    return ""
+
+    return ub.session_commit()

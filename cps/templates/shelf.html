@@ -9,13 +9,15 @@
       <a id="order_shelf" href="{{ url_for('shelf.order_shelf', shelf_id=shelf.id) }}" class="btn btn-default">{{ _('Change order') }} </a>
     {% endif %}
   {% endif %}
-  <div class="row">
-
+  <div class="row display-flex">
     {% for entry in entries %}
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book">
       <div class="cover">
             <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
-              <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
+              <span class="img">
+                <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
+                {% if entry.id in read_book_ids %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+              </span>
             </a>
       </div>
       <div class="meta">
@@ -64,7 +66,7 @@
     {% endfor %}
   </div>
 </div>
-<div id="DeleteShelfDialog" class="modal fade" role="dialog">
+<!--div id="DeleteShelfDialog" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header bg-danger text-center">
@@ -78,6 +80,9 @@
       </div>
     </div>
   </div>
-</div>
+</div-->
 
+{% endblock %}
+{% block modal %}
+{{ delete_confirm_modal() }}
 {% endblock %}
