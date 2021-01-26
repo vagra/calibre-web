@@ -184,7 +184,7 @@
 
 <script src="//cdn.sanxuezang.com/static/js/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 {% if not g.user.locale == 'en' %}
-<script src="//cdn.sanxuezang.com/static/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.' + g.user.locale + '.min.js" charset="UTF-8"></script>
+<script src="{{ '//cdn.sanxuezang.com/static/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.' + g.user.locale + '.min.js' }}" charset="UTF-8"></script>
 {% endif %}
 <script src="//cdn.sanxuezang.com/static/js/libs/bootstrap-rating-input.min.js"></script>
 <script src="//cdn.sanxuezang.com/static/js/libs/typeahead.bundle.js"></script>

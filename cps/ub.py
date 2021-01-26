@@ -175,7 +175,7 @@ class User(UserBase, Base):
     kindle_mail = Column(String(120), default="")
     shelf = relationship('Shelf', backref='user', lazy='dynamic', order_by='Shelf.name')
     downloads = relationship('Downloads', backref='user', lazy='dynamic')
-    locale = Column(String(2), default="zh_Hans_CN")
+    locale = Column(String(20), default="zh_Hans_CN")
     sidebar_view = Column(Integer, default=1)
     default_language = Column(String(3), default="all")
     mature_content = Column(Boolean, default=True)
