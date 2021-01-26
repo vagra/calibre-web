@@ -36,9 +36,9 @@ def get_sidebar_config(kwargs=None):
     else:
         content = 'conf' in kwargs
     sidebar = list()
-    sidebar.append({"glyph": "glyphicon-book", "text": _('Recently Added'), "link": 'web.index', "id": "new",
-                    "visibility": constants.SIDEBAR_RECENT, 'public': True, "page": "root",
-                    "show_text": _('Show recent books'), "config_show":False})
+    sidebar.append({"glyph": "glyphicon-book", "text": _('Recently Added'), "link": 'web.books_list', "id": "new",
+                    "visibility": constants.SIDEBAR_RECENT, 'public': True, "page": "new",
+                    "show_text": _('Show recent books'), "config_show": False})
     sidebar.append({"glyph": "glyphicon-fire", "text": _('Hot Books'), "link": 'web.books_list', "id": "hot",
                     "visibility": constants.SIDEBAR_HOT, 'public': True, "page": "hot",
                     "show_text": _('Show Hot Books'), "config_show": True})
@@ -48,8 +48,8 @@ def get_sidebar_config(kwargs=None):
                     "config_show": content})
     sidebar.append(
         {"glyph": "glyphicon-star", "text": _('Top Rated Books'), "link": 'web.books_list', "id": "rated",
-         "visibility": constants.SIDEBAR_BEST_RATED, 'public': True, "page": "rated",
-         "show_text": _('Show Top Rated Books'), "config_show": True})
+         "visibility": constants.SIDEBAR_BEST_RATED, 'public': False, "page": "rated",
+         "show_text": _('Show Top Rated Books'), "config_show": False})
     sidebar.append({"glyph": "glyphicon-eye-open", "text": _('Read Books'), "link": 'web.books_list', "id": "read",
                     "visibility": constants.SIDEBAR_READ_AND_UNREAD, 'public': (not g.user.is_anonymous),
                     "page": "read", "show_text": _('Show read and unread'), "config_show": content})
@@ -78,8 +78,8 @@ def get_sidebar_config(kwargs=None):
                     "page": "language",
                     "show_text": _('Show language selection'), "config_show": True})
     sidebar.append({"glyph": "glyphicon-star-empty", "text": _('Ratings'), "link": 'web.ratings_list', "id": "rate",
-                    "visibility": constants.SIDEBAR_RATING, 'public': True,
-                    "page": "rating", "show_text": _('Show ratings selection'), "config_show": True})
+                    "visibility": constants.SIDEBAR_RATING, 'public': False,
+                    "page": "rating", "show_text": _('Show ratings selection'), "config_show": False})
     sidebar.append({"glyph": "glyphicon-file", "text": _('File formats'), "link": 'web.formats_list', "id": "format",
                     "visibility": constants.SIDEBAR_FORMAT, 'public': True,
                     "page": "format", "show_text": _('Show file formats selection'), "config_show": True})
