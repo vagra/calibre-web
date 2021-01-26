@@ -10,7 +10,7 @@
     <div class="col-sm-12 col-md-7 col-lg-7 book-meta">
       <div class="btn-toolbar" role="toolbar">
         <div class="btn-group" role="group" aria-label="Download, send to Kindle, reading">
-          {% if g.user.role_download() %}
+          {% if g.user.role_download() %}
             {% if entry.data|length %}
             <div class="btn-group" role="group">
                 {% if entry.data|length < 2 %}
@@ -278,7 +278,7 @@
       {% endif %}
 
       {% endif %}
-      {% if g.user.role_edit() %}
+      {% if g.user.role_edit() %}
       <div class="btn-toolbar" role="toolbar">
         <div class="btn-group" role="group" aria-label="Edit/Delete book">
           <a href="{{ url_for('editbook.edit_book', book_id=entry.id) }}" class="btn btn-sm btn-primary" id="edit_book" role="button"><span class="glyphicon glyphicon-edit"></span> {{_('Edit Metadata')}}</a>

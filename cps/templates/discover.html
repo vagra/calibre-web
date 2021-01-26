@@ -2,13 +2,16 @@
 {% block body %}
 <div class="discover load-more">
   <h2>{{title}}</h2>
-  <div class="row">
+  <div class="row display-flex">
     {% for entry in entries %}
     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 book">
       <div class="cover">
         {% if entry.has_cover is defined %}
           <a href="{{ url_for('web.show_book', book_id=entry.id) }}" data-toggle="modal" data-target="#bookDetailsModal" data-remote="false">
-            <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
+            <span class="img">
+              <img src="//img.sanxuezang.com/thumbs/{{ entry.path }}/thumb.jpg" alt="{{ entry.title }}" />
+              {% if entry.id in read_book_ids %}<span class="badge read glyphicon glyphicon-ok"></span>{% endif %}
+            </span>
           </a>
         {% endif %}
       </div>

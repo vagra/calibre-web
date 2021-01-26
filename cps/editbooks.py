@@ -30,18 +30,43 @@ from uuid import uuid4
 from flask import Blueprint, request, flash, redirect, url_for, abort, Markup, Response
 from flask_babel import gettext as _
 from flask_login import current_user, login_required
-from sqlalchemy.exc import OperationalError
-
+from sqlalchemy.exc import OperationalError, IntegrityError
+from sqlite3 import OperationalError as sqliteOperationalError
 from . import constants, logger, isoLanguages, gdriveutils, uploader, helper
 from . import config, get_locale, ub, db
 from . import calibre_db
 from .services.worker import WorkerThread
 from .tasks.upload import TaskUpload
-from .web import login_required_if_no_ano, render_title_template, edit_required, upload_required
+from .render_template import render_title_template
+from .usermanagement import login_required_if_no_ano
+
+try:
+    from functools import wraps
+except ImportError:
+    pass  # We're not using Python 3
 
 
 editbook = Blueprint('editbook', __name__)
 log = logger.create()
+
+
+def upload_required(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if current_user.role_upload() or current_user.role_admin():
+            return f(*args, **kwargs)
+        abort(403)
+
+    return inner
+
+def edit_required(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if current_user.role_edit() or current_user.role_admin():
+            return f(*args, **kwargs)
+        abort(403)
+
+    return inner
 
 
 # Modifies different Database objects, first check if elements have to be added to database, than check
@@ -215,7 +240,7 @@ def delete_book(book_id, book_format, jsonResponse):
                     ub.session.query(ub.BookShelf).filter(ub.BookShelf.book_id == book_id).delete()
                     ub.session.query(ub.ReadBook).filter(ub.ReadBook.book_id == book_id).delete()
                     ub.delete_download(book_id)
-                    ub.session.commit()
+                    ub.session_commit()
 
                     # check if only this book links to:
                     # author, language, series, tags, custom columns
@@ -259,7 +284,7 @@ def delete_book(book_id, book_format, jsonResponse):
                         filter(db.Data.format == book_format).delete()
                 calibre_db.session.commit()
             except Exception as e:
-                log.exception(e)
+                log.debug_or_exception(e)
                 calibre_db.session.rollback()
         else:
             # book not found
@@ -285,9 +310,8 @@ def delete_book(book_id, book_format, jsonResponse):
 
 
 def render_edit_book(book_id):
-    calibre_db.update_title_sort(config)
     cc = calibre_db.session.query(db.Custom_Columns).filter(db.Custom_Columns.datatype.notin_(db.cc_exceptions)).all()
-    book = calibre_db.get_filtered_book(book_id)
+    book = calibre_db.get_filtered_book(book_id, allow_show_archived=True)
     if not book:
         flash(_(u"Error opening eBook. File does not exist or file is not accessible"), category="error")
         return redirect(url_for("web.index"))
@@ -307,7 +331,7 @@ def render_edit_book(book_id):
     kepub_possible=None
     if config.config_converterpath:
         for file in book.data:
-            if file.format.lower() in constants.EXTENSIONS_CONVERT:
+            if file.format.lower() in constants.EXTENSIONS_CONVERT_FROM:
                 valid_source_formats.append(file.format.lower())
     if config.config_kepubifypath and 'epub' in [file.format.lower() for file in book.data]:
         kepub_possible = True
@@ -316,7 +340,7 @@ def render_edit_book(book_id):
 
     # Determine what formats don't already exist
     if config.config_converterpath:
-        allowed_conversion_formats = constants.EXTENSIONS_CONVERT[:]
+        allowed_conversion_formats = constants.EXTENSIONS_CONVERT_TO[:]
         for file in book.data:
             if file.format.lower() in allowed_conversion_formats:
                 allowed_conversion_formats.remove(file.format.lower())
@@ -545,7 +569,7 @@ def upload_single_file(request, book, book_id):
                     calibre_db.session.add(db_format)
                     calibre_db.session.commit()
                     calibre_db.update_title_sort(config)
-                except OperationalError as e:
+                except (OperationalError, IntegrityError) as e:
                     calibre_db.session.rollback()
                     log.error('Database error: %s', e)
                     flash(_(u"Database error: %(error)s.", error=e), category="error")
@@ -582,13 +606,20 @@ def upload_cover(request, book):
 @edit_required
 def edit_book(book_id):
     modif_date = False
+
+    # create the function for sorting...
+    try:
+        calibre_db.update_title_sort(config)
+    except sqliteOperationalError as e:
+        log.debug_or_exception(e)
+        calibre_db.session.rollback()
+
     # Show form
     if request.method != 'POST':
         return render_edit_book(book_id)
 
-    # create the function for sorting...
-    calibre_db.update_title_sort(config)
-    book = calibre_db.get_filtered_book(book_id)
+
+    book = calibre_db.get_filtered_book(book_id, allow_show_archived=True)
 
     # Book not found
     if not book:
@@ -652,12 +683,15 @@ def edit_book(book_id):
                 if to_save["cover_url"]:
                     if not current_user.role_upload():
                         return "", (403)
-                    result, error = helper.save_cover_from_url(to_save["cover_url"], book.path)
-                    if result is True:
-                        book.has_cover = 1
-                        modif_date = True
+                    if to_save["cover_url"].endswith('/static/generic_cover.jpg'):
+                        book.has_cover = 0
                     else:
-                        flash(error, category="error")
+                        result, error = helper.save_cover_from_url(to_save["cover_url"], book.path)
+                        if result is True:
+                            book.has_cover = 1
+                            modif_date = True
+                        else:
+                            flash(error, category="error")
 
             # Add default series_index to book
             modif_date |= edit_book_series_index(to_save["series_index"], book)
@@ -713,7 +747,7 @@ def edit_book(book_id):
             flash(error, category="error")
             return render_edit_book(book_id)
     except Exception as e:
-        log.exception(e)
+        log.debug_or_exception(e)
         calibre_db.session.rollback()
         flash(_("Error editing book, please check logfile for details"), category="error")
         return redirect(url_for('web.show_book', book_id=book.id))
@@ -897,7 +931,7 @@ def upload():
                     else:
                         resp = {"location": url_for('web.show_book', book_id=book_id)}
                         return Response(json.dumps(resp), mimetype='application/json')
-            except OperationalError as e:
+            except (OperationalError, IntegrityError) as e:
                 calibre_db.session.rollback()
                 log.error("Database error: %s", e)
                 flash(_(u"Database error: %(error)s.", error=e), category="error")
@@ -932,8 +966,6 @@ def convert_bookformat(book_id):
 @edit_required
 def edit_list_book(param):
     vals = request.form.to_dict()
-    # calibre_db.update_title_sort(config)
-    #calibre_db.session.connection().connection.connection.create_function('uuid4', 0, lambda: str(uuid4()))
     book = calibre_db.get_book(vals['pk'])
     if param =='series_index':
         edit_book_series_index(vals['value'], book)

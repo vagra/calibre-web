@@ -197,7 +197,8 @@
 {% endblock %}
 
 {% block modal %}
-{{ delete_book(book.id) }}
+{{ delete_book() }}
+{{ delete_confirm_modal() }}
 
 <div class="modal fade" id="metaModal" tabindex="-1" role="dialog" aria-labelledby="metaModalLabel">
   <div class="modal-dialog modal-lg" role="document">
@@ -300,7 +301,7 @@
 <script src="//cdn.sanxuezang.com/static/js/libs/tinymce/tinymce.min.js"></script>
 <script src="//cdn.sanxuezang.com/static/js/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 {% if not g.user.locale == 'en' %}
-<script src="//cdn.sanxuezang.com/static/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.' + g.user.locale + '.min.js" charset="UTF-8"></script>
+<script src="{{ '//cdn.sanxuezang.com/static/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.' + g.user.locale + '.min.js' }}" charset="UTF-8"></script>
 {% endif %}
 <script src="//cdn.sanxuezang.com/static/js/edit_books.js"></script>
 {% endblock %}
