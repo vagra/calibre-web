@@ -15,6 +15,11 @@
  *  along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+function getPath() {
+    var jsFileLocation = $("script[src*=jquery]").attr("src");  // the js file path
+    return jsFileLocation.substr(0, jsFileLocation.search("/static/js/libs/jquery.min.js"));  // the js folder path
+}
 // Generic control/related handler to show/hide fields based on a checkbox' value
 // e.g.
 //  <input type="checkbox" data-control="stuff-to-show">
@@ -82,7 +87,6 @@ $(".container-fluid").bind('drop', function (e) {
         var files = e.originalEvent.dataTransfer.files;
         var test = $("#btn-upload")[0].accept;
         $(this).css('background', '');
-        // var final = [];
         const dt = new DataTransfer()
         jQuery.each(files, function (index, item) {
             if (test.indexOf(item.name.substr(item.name.lastIndexOf('.'))) !== -1) {
@@ -111,15 +115,13 @@ $(document).ready(function() {
 });
 
 function ConfirmDialog(id, dataValue, yesFn, noFn) {
-    var pathname = document.getElementsByTagName("script"), src = pathname[pathname.length - 1].src;
-    var path = src.substring(0, src.lastIndexOf("/"));
     var $confirm = $("#GeneralDeleteModal");
     // var dataValue= e.data('value'); // target.data('value');
     $confirm.modal('show');
     $.ajax({
         method:"get",
         dataType: "json",
-        url: path + "/../../ajax/loaddialogtexts/" + id,
+        url: getPath() + "/ajax/loaddialogtexts/" + id,
         success: function success(data) {
             $("#header").html(data.header);
             $("#text").html(data.main);
@@ -141,15 +143,13 @@ function ConfirmDialog(id, dataValue, yesFn, noFn) {
 
 $("#delete_confirm").click(function() {
     //get data-id attribute of the clicked element
-    var pathname = document.getElementsByTagName("script"), src = pathname[pathname.length - 1].src;
-    var path = src.substring(0, src.lastIndexOf("/"));
     var deleteId = $(this).data("delete-id");
     var bookFormat = $(this).data("delete-format");
     if (bookFormat) {
-        window.location.href = path + "/../../delete/" + deleteId + "/" + bookFormat;
+        window.location.href = getPath() + "/delete/" + deleteId + "/" + bookFormat;
     } else {
         if ($(this).data("delete-format")) {
-            path = path + "/../../ajax/delete/" + deleteId;
+            path = getPath() + "/ajax/delete/" + deleteId;
             $.ajax({
                 method:"get",
                 url: path,
@@ -169,7 +169,7 @@ $("#delete_confirm").click(function() {
                 }
             });
         } else {
-            window.location.href = path + "/../../delete/" + deleteId;
+            window.location.href = getPath() + "/delete/" + deleteId;
 
         }
     }
@@ -485,12 +485,9 @@ $(function() {
             $(this).attr('id'),
             $(this).data('value'),
             function (value) {
-                var pathname = document.getElementsByTagName("script");
-                var src = pathname[pathname.length - 1].src;
-                var path = src.substring(0, src.lastIndexOf("/"));
                 $.ajax({
                     method: "get",
-                    url: path + "/../../kobo_auth/deleteauthtoken/" + value,
+                    url: getPath() + "/kobo_auth/deleteauthtoken/" + value,
                 });
                 $("#config_delete_kobo_token").hide();
             }
@@ -583,12 +580,10 @@ $(function() {
         $("#DialogFinished").addClass("hidden");
         $("#DialogContent").html("");
         $("#spinner2").show();
-        var pathname = document.getElementsByTagName("script"), src = pathname[pathname.length - 1].src;
-        var path = src.substring(0, src.lastIndexOf("/"));
         $.ajax({
             method:"get",
             dataType: "json",
-            url: path + "/../../import_ldap_users",
+            url: getPath() + "/import_ldap_users",
             success: function success(data) {
                 $("#spinner2").hide();
                 $("#DialogContent").html(data.text);
