@@ -37,14 +37,14 @@
       <div class="row">
         <div class="col-xs-6 col-md-6 col-sm-offset-3" style="margin-top:50px;">
             
-            <p class='text-justify attribute'><strong>Start Time: </strong>2021-01-23 19:48:56</p>
+            <p class='text-justify attribute'><strong>Start Time: </strong>2021-02-01 19:02:39</p>
             
         </div>
       </div>
       <div class="row">
         <div class="col-xs-6 col-md-6 col-sm-offset-3">
             
-            <p class='text-justify attribute'><strong>Stop Time: </strong>2021-01-23 22:16:21</p>
+            <p class='text-justify attribute'><strong>Stop Time: </strong>2021-02-01 21:32:03</p>
             
         </div>
       </div>
@@ -1190,11 +1190,11 @@
     
 
 
-    <tr id="su" class="passClass">
+    <tr id="su" class="failClass">
         <td>TestEditBooksOnGdrive</td>
         <td class="text-center">20</td>
-        <td class="text-center">20</td>
-        <td class="text-center">0</td>
+        <td class="text-center">19</td>
+        <td class="text-center">1</td>
         <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">
@@ -1375,11 +1375,31 @@
     
     
     
-        <tr id='pt12.20' class='hiddenRow bg-success'>
+        <tr id="ft12.20" class="none bg-danger">
             <td>
                 <div class='testcase'>TestEditBooksOnGdrive - test_watch_metadata</div>
             </td>
-            <td colspan='6' align='center'>PASS</td>
+            <td colspan='6'>
+                <div class="text-center">
+                    <a class="popup_link text-center" onfocus='blur()' onclick="showTestDetail('div_ft12.20')">FAIL</a>
+                </div>
+                <!--css div popup start-->
+                <div id="div_ft12.20" class="popup_window test_output" style="display:none;">
+                    <div class='close_button pull-right'>
+                        <button type="button" class="close" aria-label="Close" onfocus='this.blur();'
+                                onclick='document.getElementById('div_ft12.20').style.display='none'"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="text-left pull-left">
+                        <pre class="text-left">Traceback (most recent call last):
+  File "/home/ozzie/Development/calibre-web-test/test/test_edit_ebooks_gdrive.py", line 847, in test_watch_metadata
+    self.assertNotIn('series', book)
+AssertionError: 'series' unexpectedly found in {'reader': ['epub'], 'title': 'testbook', 'author': ['John Döe'], 'rating': 0, 'languages': ['English'], 'identifier': [], 'cover': '/cover/5?edit=175d2a21-2733-49b6-9fcf-3ef9aee1670b', 'tag': [], 'publisher': ['Randomhäus'], 'comment': '\n', 'add_shelf': [], 'del_shelf': [], 'edit_enable': True, 'kindle': None, 'kindlebtn': None, 'download': ['EPUB (6.7 kB)'], 'read': False, 'archived': False, 'series_all': 'Book 1.0 of test', 'series_index': '1.0', 'series': 'test', 'cust_columns': []}</pre>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--css div popup end-->
+            </td>
         </tr>
     
     
@@ -1487,11 +1507,11 @@
     
 
 
-    <tr id="su" class="failClass">
+    <tr id="su" class="passClass">
         <td>TestFilePicker</td>
         <td class="text-center">3</td>
-        <td class="text-center">2</td>
-        <td class="text-center">1</td>
+        <td class="text-center">3</td>
+        <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">
@@ -1510,33 +1530,11 @@
     
     
     
-        <tr id="ft15.2" class="none bg-danger">
+        <tr id='pt15.2' class='hiddenRow bg-success'>
             <td>
                 <div class='testcase'>TestFilePicker - test_filepicker_limited_file</div>
             </td>
-            <td colspan='6'>
-                <div class="text-center">
-                    <a class="popup_link text-center" onfocus='blur()' onclick="showTestDetail('div_ft15.2')">FAIL</a>
-                </div>
-                <!--css div popup start-->
-                <div id="div_ft15.2" class="popup_window test_output" style="display:none;">
-                    <div class='close_button pull-right'>
-                        <button type="button" class="close" aria-label="Close" onfocus='this.blur();'
-                                onclick='document.getElementById('div_ft15.2').style.display='none'"><span
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="text-left pull-left">
-                        <pre class="text-left">Traceback (most recent call last):
-  File "/home/ozzie/Development/calibre-web-test/test/test_filepicker.py", line 48, in test_filepicker_limited_file
-    self.assertEqual(CALIBRE_WEB_PATH, element.text)
-AssertionError: '/home/ozzie/Development/calibre-web' != ''
-- /home/ozzie/Development/calibre-web
-+</pre>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <!--css div popup end-->
-            </td>
+            <td colspan='6' align='center'>PASS</td>
         </tr>
     
     
@@ -2318,11 +2316,11 @@ AssertionError: '/home/ozzie/Development/calibre-web' != ''
     
 
 
-    <tr id="su" class="failClass">
+    <tr id="su" class="passClass">
         <td>TestReader</td>
         <td class="text-center">5</td>
-        <td class="text-center">4</td>
-        <td class="text-center">1</td>
+        <td class="text-center">5</td>
+        <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">
@@ -2368,31 +2366,11 @@ AssertionError: '/home/ozzie/Development/calibre-web' != ''
     
     
     
-        <tr id="ft24.5" class="none bg-danger">
+        <tr id='pt24.5' class='hiddenRow bg-success'>
             <td>
                 <div class='testcase'>TestReader - test_txt_reader</div>
             </td>
-            <td colspan='6'>
-                <div class="text-center">
-                    <a class="popup_link text-center" onfocus='blur()' onclick="showTestDetail('div_ft24.5')">FAIL</a>
-                </div>
-                <!--css div popup start-->
-                <div id="div_ft24.5" class="popup_window test_output" style="display:none;">
-                    <div class='close_button pull-right'>
-                        <button type="button" class="close" aria-label="Close" onfocus='this.blur();'
-                                onclick='document.getElementById('div_ft24.5').style.display='none'"><span
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="text-left pull-left">
-                        <pre class="text-left">Traceback (most recent call last):
-  File "/home/ozzie/Development/calibre-web-test/test/test_reader.py", line 61, in test_txt_reader
-    self.assertTrue('hörte' in content.text, 'Encoding of textfile viewer is not respected properly')
-AssertionError: False is not true : Encoding of textfile viewer is not respected properly</pre>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <!--css div popup end-->
-            </td>
+            <td colspan='6' align='center'>PASS</td>
         </tr>
     
     
@@ -2400,13 +2378,13 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
 
     <tr id="su" class="passClass">
         <td>TestRegister</td>
-        <td class="text-center">7</td>
-        <td class="text-center">7</td>
+        <td class="text-center">8</td>
+        <td class="text-center">8</td>
         <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">0</td>
         <td class="text-center">
-            <a onclick="showClassDetail('c25', 7)">Detail</a>
+            <a onclick="showClassDetail('c25', 8)">Detail</a>
         </td>
     </tr>
 
@@ -2423,7 +2401,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
     
         <tr id='pt25.2' class='hiddenRow bg-success'>
             <td>
-                <div class='testcase'>TestRegister - test_limit_domain</div>
+                <div class='testcase'>TestRegister - test_illegal_email</div>
             </td>
             <td colspan='6' align='center'>PASS</td>
         </tr>
@@ -2432,7 +2410,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
     
         <tr id='pt25.3' class='hiddenRow bg-success'>
             <td>
-                <div class='testcase'>TestRegister - test_register_no_server</div>
+                <div class='testcase'>TestRegister - test_limit_domain</div>
             </td>
             <td colspan='6' align='center'>PASS</td>
         </tr>
@@ -2441,7 +2419,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
     
         <tr id='pt25.4' class='hiddenRow bg-success'>
             <td>
-                <div class='testcase'>TestRegister - test_registering_only_email</div>
+                <div class='testcase'>TestRegister - test_register_no_server</div>
             </td>
             <td colspan='6' align='center'>PASS</td>
         </tr>
@@ -2450,7 +2428,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
     
         <tr id='pt25.5' class='hiddenRow bg-success'>
             <td>
-                <div class='testcase'>TestRegister - test_registering_user</div>
+                <div class='testcase'>TestRegister - test_registering_only_email</div>
             </td>
             <td colspan='6' align='center'>PASS</td>
         </tr>
@@ -2459,7 +2437,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
     
         <tr id='pt25.6' class='hiddenRow bg-success'>
             <td>
-                <div class='testcase'>TestRegister - test_registering_user_fail</div>
+                <div class='testcase'>TestRegister - test_registering_user</div>
             </td>
             <td colspan='6' align='center'>PASS</td>
         </tr>
@@ -2467,6 +2445,15 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
     
     
         <tr id='pt25.7' class='hiddenRow bg-success'>
+            <td>
+                <div class='testcase'>TestRegister - test_registering_user_fail</div>
+            </td>
+            <td colspan='6' align='center'>PASS</td>
+        </tr>
+    
+    
+    
+        <tr id='pt25.8' class='hiddenRow bg-success'>
             <td>
                 <div class='testcase'>TestRegister - test_user_change_password</div>
             </td>
@@ -3411,9 +3398,9 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
 
     <tr id='total_row' class="text-center bg-grey">
         <td>Total</td>
-        <td>298</td>
-        <td>289</td>
-        <td>2</td>
+        <td>299</td>
+        <td>291</td>
+        <td>1</td>
         <td>0</td>
         <td>7</td>
         <td>&nbsp;</td>
@@ -3443,7 +3430,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
           
             <tr>
               <th>Platform</th>
-              <td>Linux 5.8.0-40-generic #45~20.04.1-Ubuntu SMP Fri Jan 15 11:35:04 UTC 2021 x86_64 x86_64</td>
+              <td>Linux 5.8.0-41-generic #46~20.04.1-Ubuntu SMP Mon Jan 18 17:52:23 UTC 2021 x86_64 x86_64</td>
               <td>Basic</td>
             </tr>
           
@@ -3497,7 +3484,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
           
             <tr>
               <th>Jinja2</th>
-              <td>2.11.2</td>
+              <td>2.11.3</td>
               <td>Basic</td>
             </tr>
           
@@ -3509,7 +3496,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
           
             <tr>
               <th>pytz</th>
-              <td>2020.5</td>
+              <td>2021.1</td>
               <td>Basic</td>
             </tr>
           
@@ -3773,7 +3760,7 @@ AssertionError: False is not true : Encoding of textfile viewer is not respected
 </div>
 
 <script>
-    drawCircle(289, 2, 0, 7);
+    drawCircle(291, 1, 0, 7);
 </script>
 
 </div>

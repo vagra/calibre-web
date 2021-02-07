@@ -24,6 +24,7 @@ from __future__ import division, print_function, unicode_literals
 import os
 from datetime import datetime
 import json
+import re
 import mimetypes
 import chardet  # dependency of requests
 from cps.yzb import validate
@@ -264,7 +265,7 @@ def get_comic_book(book_id, book_format, page):
                 else:
                     b64 = extract(page).encode('base64')
                 ext = names[page].rpartition('.')[-1]
-                if ext not in ('png', 'gif', 'jpg', 'jpeg'):
+                if ext not in ('png', 'gif', 'jpg', 'jpeg', 'webp'):
                     ext = 'png'
                 extractedfile="data:image/" + ext + ";base64," + b64
                 fileData={"name": names[page], "page":page, "last":len(names)-1, "content": extractedfile}
@@ -1288,11 +1289,17 @@ def register():
         if config.config_register_email:
             nickname = to_save["email"]
         else:
-            nickname = to_save["nickname"]
-        if not nickname or not to_save["email"]:
+            nickname = to_save.get('nickname', None)
+        if not nickname or not to_save.get("email", None):
             flash(_(u"Please fill out all fields!"), category="error")
             return render_title_template('register.html', title=_(u"register"), page="register")
-
+        #if to_save["email"].count("@") != 1 or not \
+        # Regex according to https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email#validation
+        if not re.search(r"^[\w.!#$%&'*+\\/=?^_`{|}~-]+@[\w](?:[\w-]{0,61}[\w])?(?:\.[\w](?:[\w-]{0,61}[\w])?)*$",
+                     to_save["email"]):
+            flash(_(u"Invalid e-mail address format"), category="error")
+            log.warning('Registering failed for user "%s" e-mail address: %s', nickname, to_save["email"])
+            return render_title_template('register.html', title=_(u"register"), page="register")
 
         existing_user = ub.session.query(ub.User).filter(func.lower(ub.User.nickname) == nickname
                                                          .lower()).first()
@@ -1318,7 +1325,7 @@ def register():
                     return render_title_template('register.html', title=_(u"register"), page="register")
             else:
                 flash(_(u"Your e-mail is not allowed to register"), category="error")
-                log.warning('Registering failed for user "%s" e-mail address: %s', to_save['nickname'], to_save["email"])
+                log.warning('Registering failed for user "%s" e-mail address: %s', nickname, to_save["email"])
                 return render_title_template('register.html', title=_(u"register"), page="register")
             flash(_(u"Confirmation e-mail was send to your e-mail account."), category="success")
             return redirect(url_for('web.login'))
